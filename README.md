@@ -1,2 +1,5 @@
 # jq-ui
-jQuery UI plugins
+
+JQuery ui plugins: 
+
+tab, accordion, alert, message, confirm, dialog ......
