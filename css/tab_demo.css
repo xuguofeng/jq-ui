@@ -28,8 +28,19 @@ img {
 #left {
 	float: left;
 	width: 250px;
+	font-size: 14px;
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
+}
+#left div {
+	margin: 5px 5px 5px 15px;
+}
+#left a {
+	color: #333333;
+	text-decoration: none;
+}
+#left a:hover {
+	color: #c81623;
 }
 #right {
 	float: left;
