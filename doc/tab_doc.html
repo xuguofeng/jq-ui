@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+<style>
+/* 示例表格样式 */
+.list {
+	width: 100%;
+	margin-top: 5px;
+	font-size: 12px;
+}
+.list td, .list th {
+	padding: 5px 10px;
+	text-align: left;
+	border-bottom: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+}
+.list th {
+	border-top: 1px solid #dddddd;
+	background: #f6f6f6;
+}
+.list tr td:last-child, .list tr th:last-child {
+	border-right: 1px solid #dddddd;
+}
+/* api文档样式 */
+.api-desc p {
+	margin: 10px 0;
+	font-size: 14px;
+}
+.code {
+	padding: 10px;
+	font-size: 12px;
+	line-height: 24px;
+	background: #f6f6f6;
+	border: 1px solid #dddddd;
+}
+</style>
+</head>
+<body>
+<div class="api-desc">
+	<p>
+		首先引入jquery库，然后引入tab.js、tab.css，如下：
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js" &gt;&lt;"/script&gt;
+
+&lt;script type="text/javascript" src="js/tab.js" &gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/tab.css" /&gt;</pre>
+
+	<p>
+		在页面加载完成后初始化tab插件
+	</p>
+	<pre class="code">
+&lt;script&gt;
+	$(function() {
+		$(".tab").tab();
+	});
+&lt;/script&gt;</pre>
+
+	<p>
+		页面代码
+	</p>
+	<pre class="code">
+&lt;div class="tab""&gt;
+	&lt;ul&gt;&lt;/ul&gt;
+	&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	<p>
+		tab插件有以下函数
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>函数名</th>
+				<th>参数</th>
+				<th>功能</th>
+				<th>返回值</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>addTab</td>
+				<td>Object</td>
+				<td>
+					添加Tab选项卡，{"title": "", "id": "", "content": ""}。<br />
+					title：标签显示文字；id：页面元素唯一id；content：面板内容
+				</td>
+				<td></td>
+				<td>
+					<pre>
+$('.tab').tab(
+	'addTab', 
+	{
+		'title': '管理员添加', 
+		'id': 'tab3', 
+		'content': '&lt;p&gt;管理员添加Content&lt;/p&gt;'
+	}
+);</pre>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>addRemoteTab</td>
+				<td>Object</td>
+				<td>
+					添加tab选项卡和面板，再从远程url获取数据填充到面板中。<br />
+					{"title": "", "id": "", "url": "", "method": ""}<br />
+					title：标签显示文字；id：页面元素唯一id；url：加载数据的地址；method：get/post
+				</td>
+				<td></td>
+				<td>
+					<pre>
+$('.tab').tab(
+	'addRemoteTab', 
+	{
+		'title': '管理员查看', 
+		'id': 'tab2', 
+		'url': 'http://127.0.0.1:8020/UI/ajax/admin_list.html',
+		'method': 'get'
+	}
+);</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>removeTab</td>
+				<td>tabId</td>
+				<td>删除指定选项卡</td>
+				<td></td>
+				<td>
+					<pre>
+$('.tab').tab(
+	'removeTab', 'tab1'
+);</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>selectTab</td>
+				<td>tabId</td>
+				<td>选中指定选项卡</td>
+				<td></td>
+				<td>
+					<pre>
+$('.tab').tab(
+	'selectTab', 'tab2'
+);</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>isSelected</td>
+				<td>tabId</td>
+				<td>判断指定选项卡是否选中</td>
+				<td>true/false</td>
+				<td>
+					<pre>
+$('.tab').tab(
+	'isSelected', 'tab2'
+);</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>isExists</td>
+				<td>tabId</td>
+				<td>判断指定选项卡是否存在</td>
+				<td>true/false</td>
+				<td>
+					<pre>
+$('.tab').tab(
+	'isExists', 'tab2'
+);</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+</body>
+</html>
