@@ -285,29 +285,40 @@
 
 	$.fn.tab = function(options, param) {
 		
-		// 保存对象
-		var tab = $(this);
-		
 		if (typeof options == 'string') {
 			switch(options){
 				case 'addTab':
-					return addTab(tab, param);
+					return this.each(function() {
+						addTab($(this), param);
+					});
 				case 'addRemoteTab':
-					return addRemoteTab(tab, param);
+					return this.each(function() {
+						addRemoteTab($(this), param);
+					});
 				case 'removeTab':
-					return removeTab(tab, param);
+					return this.each(function() {
+						removeTab($(this), param);
+					});
 				case 'selectTab':
-					return selectTab(tab, param);
+					return this.each(function() {
+						selectTab($(this), param);
+					});
 				case 'isSelected':
-					return isSelected(tab, param);
+					return this.each(function() {
+						isSelected($(this), param);
+					});
 				case 'isExists':
-					return isExists(tab, param);
+					return this.each(function() {
+						isExists($(this), param);
+					});
 			}
 		}
 		
 		options = options || {};
 
 		return this.each(function() {
+			// 保存对象
+			var tab = $(this);
 			// 初始化tab选项卡、面板样式
 			initTab(tab);
 			// 初始化标签的右键菜单和菜单项

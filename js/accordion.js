@@ -47,21 +47,24 @@
 	
 	$.fn.accordion = function(options, param) {
 		
-		// 保存对象
-		var accordion = $(this);
-		
 		if (typeof options == 'string') {
 			switch(options){
 				case 'select':
-					return select(accordion, param);
+					return this.each(function() {
+						select(accordion, param);
+					});
 				case 'isSelected':
-					return isSelected(accordion, param);
+					return this.each(function() {
+						isSelected(accordion, param);
+					});
 			}
 		}
 		
 		options = options || {};
 
 		return this.each(function() {
+			// 保存对象
+			var accordion = $(this);
 			// 初始化组件
 			init(accordion);
 			// 绑定事件
