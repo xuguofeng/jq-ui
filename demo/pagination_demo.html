@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+		<title>jQuery插件开发学习之分页</title>
+		
+		<!-- jquery库 -->
+		<script type="text/javascript" src="../js/jquery/jquery-1.7.2.min.js" ></script>
+		<!-- pagination库 -->
+		<script type="text/javascript" src="../js/pagination.js" ></script>
+		<!-- pagination样式文件 -->
+		<link rel="stylesheet" href="../css/pagination.css" />
+		
+		<!-- demo页面样式 -->
+		<link rel="stylesheet" href="css/pagination_demo.css" />
+		
+		<script>
+			$(function() {
+				// 初始化主操作面板宽度和高度
+				$("#main").css("width", document.body.clientWidth + "px");
+				$("#main").css("height", $(document).height() + "px");
+				
+				// 左侧面板高度
+				$("#left").css("height", ($("#main").height() - 80 - 2) + "px");
+				
+				// 右侧面板宽度和高度
+				$("#right").css("width", ($("#main").width() - $("#left").width() - 2) + "px");
+				$("#right").css("height", ($("#left").height()) + "px");
+				
+				// 分页插件
+				$("#pagination").pagination({
+					"size": 6,
+					"click": function(curr, s) {
+						return 11;
+					}
+				});
+				$("#pagination").pagination(
+					"toPage", {"current": 1, "total": 11}
+				);
+				
+				// 分页插件2
+				$("#pagination2").pagination({
+					"size": 20,
+					"click": function(curr, s) {
+						return 56;
+					}
+				});
+				$("#pagination2").pagination(
+					"toPage", {"current": 1, "total": 56}
+				);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<div id="t">
+				<!-- 分页插件 -->
+				<div id="pagination"></div>
+				<!-- 分页插件 END -->
+				<br />
+				<!-- 分页插件2 -->
+				<div id="pagination2"></div>
+				<!-- 分页插件2 END -->
+			</div>
+		</div>
+	</body>
+</html>

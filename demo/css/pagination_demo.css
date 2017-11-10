@@ -1,0 +1,22 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td {
+	margin: 0;
+	padding: 0;
+	font-family: \5FAE\8F6F\96C5\9ED1,verdana;
+	outline: none;
+}
+ul,ol {
+	list-style: none;
+}
+img {
+	border: 0px;
+	vertical-align: middle;
+}
+
+/* 主操作区域样式 */
+#main {
+	padding: 0;
+}
+
+#t {
+	width: 95%;
+}
