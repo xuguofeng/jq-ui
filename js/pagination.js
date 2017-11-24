@@ -91,19 +91,51 @@
 		if(current == total)
 			$($pagination).find(".next, .last").addClass("disable-page");
 		
-		// 计算开始页码
-		var start = current - Math.floor(size / 2);
-		if(start < 1)
+		/* 计算 start 和 end */
+		var front, behind, c;
+		if (size % 2 == 0) {
+			front = size / 2 - 1;
+			behind = size / 2;
+			c = size / 2;
+		} else {
+			front = Math.floor(size / 2);
+			behind = Math.floor(size / 2);
+			c = Math.ceil(size / 2);
+		}
+		
+		var start, end;
+		
+		if (total <= size) {
 			start = 1;
-
-		// 计算结束页码
-		var end = start + size - 1;
-		if(end > total)
 			end = total;
-
-		// 重新计算开始页码
-		if(end - size + 1 > 0)
-			start = end - size + 1;
+		} else {
+			if (current <= c) {
+				start = 1;
+				end = size;
+			} else {
+				if ((current + behind) > total) {
+					start = total - size;
+					end = total;
+				} else {
+					start = current - front;
+					end = current + behind;
+				}
+			}
+		}
+		
+//		// 计算开始页码
+//		var start = current - Math.floor(size / 2);
+//		if(start < 1)
+//			start = 1;
+//
+//		// 计算结束页码
+//		var end = start + size - 1;
+//		if(end > total)
+//			end = total;
+//
+//		// 重新计算开始页码
+//		if(end - size + 1 > 0)
+//			start = end - size + 1;
 
 		// 先清空当前页码
 		$pagination.find(".page-container").empty();
