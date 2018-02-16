@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+		<title>jQuery插件开发学习之轮播图</title>
+		
+		<style>
+			#banner { width: 640px; height: 247px; margin: 20px auto; }
+			#banner1 { width: 960px; height: 450px; margin: 20px auto; }
+		</style>
+		
+		<script>
+			$(function() {
+				$("#banner1").slider({
+					timeInterval: 2000,
+					controlNav: true,
+					directionNav: true
+				});
+				$("#banner").slider({
+					timeInterval: 2000,
+					controlNav: true,
+					directionNav: true
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<div id="banner">
+				<ul>
+					<li><a href="#"><img src="img/slider/banner1.jpg" alt="第1张图片"></a></li>
+					<li><a href="#"><img src="img/slider/banner2.jpg" alt="第2张图片"></a></li>
+					<li><a href="#"><img src="img/slider/banner3.jpg" alt="第3张图片"></a></li>
+				</ul>
+			</div>
+			<div id="banner1">
+				<ul>
+					<li><a href="#"><img src="img/slider/1.jpg" alt="第1张图片"></a></li>
+					<li><a href="#"><img src="img/slider/2.jpg" alt="第2张图片"></a></li>
+					<li><a href="#"><img src="img/slider/3.jpg" alt="第3张图片"></a></li>
+					<li><a href="#"><img src="img/slider/4.jpg" alt="第4张图片"></a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
