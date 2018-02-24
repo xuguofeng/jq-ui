@@ -30,8 +30,7 @@ $(function() {
 ```
 
 ###效果
-![Baidu](http://www.baidu.com/img/logo.gif "百度logo")
-![Github](http://github.com/用户名/项目名/raw/分支名/图片文件夹/图片名)
+![Github](https://github.com/xuguofeng/jq-ui/raw/master/img/demo/tab_demo.jpg)
 
 
 
@@ -81,6 +80,7 @@ $(function() {
 ```
 
 ###效果
+![Github](https://github.com/xuguofeng/jq-ui/raw/master/img/demo/accordion_demo.jpg)
 
 
 
@@ -113,6 +113,7 @@ $("#pagination").pagination(
 ```
 
 ###效果
+![Github](https://github.com/xuguofeng/jq-ui/raw/master/img/demo/pagination_demo.jpg)
 
 
 
@@ -164,6 +165,7 @@ $("#banner").slider({
 ```
 
 ###效果
+![Github](https://github.com/xuguofeng/jq-ui/raw/master/img/demo/slider_demo.jpg)
 
 
 
