@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+<style>
+/* 示例表格样式 */
+.list {
+	width: 100%;
+	margin-top: 5px;
+	font-size: 12px;
+}
+.list td, .list th {
+	padding: 5px 10px;
+	text-align: left;
+	border-bottom: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+}
+.list th {
+	border-top: 1px solid #dddddd;
+	background: #f6f6f6;
+}
+.list tr td:last-child, .list tr th:last-child {
+	border-right: 1px solid #dddddd;
+}
+/* api文档样式 */
+.api-desc p {
+	margin: 10px 0;
+	font-size: 14px;
+}
+.code {
+	padding: 10px;
+	font-size: 12px;
+	line-height: 24px;
+	background: #f6f6f6;
+	border: 1px solid #dddddd;
+}
+</style>
+</head>
+<body>
+<div class="api-desc">
+	<p>
+		首先引入jquery库，然后引入pagination.js、pagination.css，如下：
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="js/pagination.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/pagination.css"/&gt;</pre>
+
+	<p>
+		在页面加载完成后初始化pagination插件
+	</p>
+	<pre class="code">
+&lt;script&gt;
+	// 分页插件
+	$("#pagination").pagination({
+		"size": 6,
+		"total": 11,
+		"click": function(curr, s) {
+			return 11;
+		}
+	});
+&lt;/script&gt;</pre>
+
+	<p>
+		页面代码
+	</p>
+	<pre class="code">
+&lt;!-- 分页插件 --&gt;
+&lt;div id="pagination"&gt;&lt;/div&gt;</pre>
+
+	<p>
+		pagination插件有以下初始化选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>size</td>
+				<td>int</td>
+				<td>显示的页码个数</td>
+			</tr>
+			<tr>
+				<td>total</td>
+				<td>int</td>
+				<td>总页数</td>
+			</tr>
+			<tr>
+				<td>click</td>
+				<td>function</td>
+				<td>页码链接点击时执行的函数，您可以在这个函数里面异步加载表格数据，该函数需要返回总页数</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		pagination插件有以下函数
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>函数名</th>
+				<th>参数</th>
+				<th>功能</th>
+				<th>返回值</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>getCurrentPage</td>
+				<td></td>
+				<td>获取当前页码</td>
+				<td>int类型的当前页码</td>
+				<td>
+					<pre>
+$("#pagination").pagination(
+	"getCurrentPage"
+);</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>toPage</td>
+				<td>{"current": 1, "total": 11}</td>
+				<td>跳转至指定页码</td>
+				<td></td>
+				<td>
+					<pre>
+$("#pagination").pagination(
+	"toPage", {"current": 1, "total": 11}
+);</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getSize</td>
+				<td></td>
+				<td>获取显示的页码个数</td>
+				<td>int类型</td>
+				<td>
+					<pre>
+$("#pagination").pagination(
+	"getSize"
+);</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+</body>
+</html>

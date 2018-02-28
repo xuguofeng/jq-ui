@@ -95,13 +95,11 @@ $(function() {
 // 分页插件
 $("#pagination").pagination({
 	"size": 6,
+	"total": 11,
 	"click": function(curr, s) {
 		return 11;
 	}
 });
-$("#pagination").pagination(
-	"toPage", {"current": 1, "total": 11}
-);
 ```
 
 ### 3.3  页面代码
