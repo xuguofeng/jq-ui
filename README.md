@@ -1,8 +1,7 @@
-jQuery ui plugins
------------------
+# [jQuery ui plugins](https://github.com/xuguofeng/jq-ui)
 
 
-# 1. tab插件
+## 1. tab插件
 ### 1.1  引入jquery库、tab.js库、tab.css样式文件
 ```html
 <script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"></script>
@@ -31,7 +30,7 @@ $(function() {
 
 
 
-# 2. accordion插件
+## 2. accordion插件
 ### 2.1  引入jquery库、accordion.js库、accordion.css样式文件
 ```html
 <script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"></script>
@@ -81,7 +80,7 @@ $(function() {
 
 
 
-# 3. pagination插件
+## 3. pagination插件
 ### 3.1  引入jquery库、pagination.js库、pagination.css样式文件
 ```html
 <script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"></script>
@@ -112,7 +111,7 @@ $("#pagination").pagination({
 
 
 
-# 4. slider插件
+## 4. slider插件
 ### 4.1  引入jquery库、jquery.slider.js库、slider.css样式文件
 ```html
 <script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"></script>
@@ -164,7 +163,7 @@ $("#banner").slider({
 
 
 
-# 5. Demo项目说明
+## 5. Demo项目说明
 ajax目录：保存ajax请求响应文件 <br/>
 css目录：  保存插件css样式文件 <br/>
 demo目录：保存示例html和css样式文件，这个目录下的html不可以直接访问，只能通过首页的手风琴链接查看 <br/>
@@ -176,7 +175,7 @@ index.html文件是demo项目的入口 <br/>
 
 
 
-# 6. 说明
+## 6. 说明
 我是一个jQuery插件开发的初学者，现在是一边学习一边开发，代码难免有一些不足之处，您在使用插件时还是需要进行详细测试。 <br/>
 如果您有需求优化、代码优化、BUG修复上的建议，您可以通过QQ联系我：947805384  <br/>
 

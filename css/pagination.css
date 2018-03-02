@@ -24,11 +24,18 @@
 	display: inline-block;
 }
 .pagination a.current-page {
-	background: #ffffff;
+	background: #ff6666;
+	border: 1px solid #ff6666;
 	cursor: default;
+}
+.pagination a:HOVER {
+	background: #ff6666;
+	border: 1px solid #ff6666;
+	cursor: pointer;
 }
 .pagination a.disable-page {
 	color: #dddddd;
 	background: #ffffff;
+	border: 1px solid #dddddd;
 	cursor: default;
 }

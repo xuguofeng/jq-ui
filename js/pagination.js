@@ -15,10 +15,8 @@
 
 		// 获取参数配置
 		var options = $.data($pagination[0], "pagination");
-		// 获取点击事件
-		var totalFn = options["click"];
 		// 调用toPage函数进行跳转
-			toPage($pagination, 1, totalFn(1, options["size"]), options["size"]);
+		toPage($pagination, options["pageNum"], options["total"], options["size"]);
 	}
 
 	/**
@@ -182,6 +180,7 @@
 
 		// 默认参数配置
 		var defaults = {
+			pageNum: 1,
 			size: 10, 						// 显示的页码个数
 			total: 1,						// 总页数
 			click: function() {return 1;}	// 页码点击事件，需要返回total总页数
