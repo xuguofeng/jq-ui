@@ -12,27 +12,21 @@
 			$(function() {
 				// 分页插件
 				$("#pagination").pagination({
-					"size": 6,
-					"total": 11,
-					"click": function(curr, s) {
+					pageNum: 1,
+					size: 6,
+					total: 11,
+					click: function(curr, s) {
 						return 11;
 					}
 				});
-//				$("#pagination").pagination(
-//					"toPage", {"current": 1, "total": 11}
-//				);
-				
 				// 分页插件2
 				$("#pagination2").pagination({
-					"size": 10,
-					"total": 56,
-					"click": function(curr, s) {
+					size: 10,
+					total: 56,
+					click: function(curr, s) {
 						return 56;
 					}
 				});
-//				$("#pagination2").pagination(
-//					"toPage", {"current": 1, "total": 56}
-//				);
 			});
 		</script>
 	</head>

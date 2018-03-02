@@ -93,9 +93,10 @@ $(function() {
 ```javascript
 // 分页插件
 $("#pagination").pagination({
-	"size": 6,
-	"total": 11,
-	"click": function(curr, s) {
+	pageNum: 1,
+	size: 6,
+	total: 11,
+	click: function(curr, s) {
 		return 11;
 	}
 });

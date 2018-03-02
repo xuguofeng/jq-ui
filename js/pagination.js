@@ -92,9 +92,9 @@
 		$($pagination).find(".first, .prev, .next, .last").removeClass("disable-page");
 		
 		if(current == 1)
-			$($pagination).find(".first, .prev").addClass("disable-page");
+			$pagination.find(".first, .prev").addClass("disable-page");
 		if(current == total)
-			$($pagination).find(".next, .last").addClass("disable-page");
+			$pagination.find(".next, .last").addClass("disable-page");
 		
 		/* 计算 start 和 end */
 		var front, behind, c;
@@ -128,30 +128,15 @@
 			}
 		}
 		
-//		// 计算开始页码
-//		var start = current - Math.floor(size / 2);
-//		if(start < 1)
-//			start = 1;
-//
-//		// 计算结束页码
-//		var end = start + size - 1;
-//		if(end > total)
-//			end = total;
-//
-//		// 重新计算开始页码
-//		if(end - size + 1 > 0)
-//			start = end - size + 1;
-
+		var $pageContainer = $pagination.find(".page-container");
+		
 		// 先清空当前页码
-		$pagination.find(".page-container").empty();
+		$pageContainer.empty();
 		// 填充页码链接
-		for(var i = start; i < current; i++) {
-			$pagination.find(".page-container").append($('<a href="javascript:;" class="page-num">' + i + '</a>'));
+		for(var i = start; i <= end; i++) {
+			$pageContainer.append($('<a href="javascript:;" class="page-num" title="' + i + '">' + i + '</a>'));
 		}
-		$pagination.find(".page-container").append($('<a href="javascript:;" class="page-num current-page">' + current + '</a>'));
-		for(var i = current + 1; i <= end; i++) {
-			$pagination.find(".page-container").append($('<a href="javascript:;" class="page-num">' + i + '</a>'));
-		}
+		$pageContainer.children("a[title='" + current + "']").addClass("current-page");
 	}
 
 	$.fn.pagination = function(options, param) {
@@ -180,7 +165,7 @@
 
 		// 默认参数配置
 		var defaults = {
-			pageNum: 1,
+			pageNum: 1,						// 第几页
 			size: 10, 						// 显示的页码个数
 			total: 1,						// 总页数
 			click: function() {return 1;}	// 页码点击事件，需要返回total总页数

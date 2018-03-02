@@ -54,9 +54,9 @@
 &lt;script&gt;
 	// 分页插件
 	$("#pagination").pagination({
-		"size": 6,
-		"total": 11,
-		"click": function(curr, s) {
+		size: 6,
+		total: 11,
+		click: function(curr, s) {
 			return 11;
 		}
 	});
@@ -82,9 +82,14 @@
 		</thead>
 		<tbody>
 			<tr>
+				<td>pageNum</td>
+				<td>int</td>
+				<td>第几页，默认1</td>
+			</tr>
+			<tr>
 				<td>size</td>
 				<td>int</td>
-				<td>显示的页码个数</td>
+				<td>显示的页码个数，默认10</td>
 			</tr>
 			<tr>
 				<td>total</td>
