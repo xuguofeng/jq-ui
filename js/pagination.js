@@ -43,6 +43,8 @@
 		});
 		// 首页、上一页、下一页、尾页点击事件
 		$pagination.delegate(".first", "click", function() {
+			var current = parseInt($pagination.find(".page-container .current-page").html());
+			if(current <= 1) return;
 			// 调用toPage函数进行跳转
 			toPage($pagination, 1, totalFn(1, options["size"]), options["size"]);
 		}).delegate(".prev", "click", function() {
@@ -56,6 +58,8 @@
 			// 调用toPage函数进行跳转
 			toPage($pagination, current, totalFn(current, options["size"]), options["size"]);
 		}).delegate(".last", "click", function() {
+			var current = parseInt($pagination.find(".page-container .current-page").html());
+			if(current >= options["total"]) return;
 			// 调用toPage函数进行跳转
 			toPage($pagination, options["total"], totalFn(options["total"], options["size"]), options["size"]);
 		});

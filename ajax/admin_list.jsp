@@ -26,7 +26,7 @@
 	Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
 	
 	int toIndex = pageNum * pageSize;
-	if(toIndex >= users.size()) 
+	if(toIndex >= users.size())
 		toIndex = users.size();
 
 	List<User> us = users.subList((pageNum - 1) * pageSize, toIndex);

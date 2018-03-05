@@ -6,8 +6,8 @@
 <script>
 	$(function() {
 		$("#first-datatable").datatable({
-			// width: 400,		// 表格默认的宽，默认400
-			// height: 300,	// 表格默认的高，默认300
+			width: "1000",
+			height: "auto",
 			columns: [
 				{ field: "id", columnName: "编号"},
 				{ field: "username", columnName: "用户名"},
@@ -16,9 +16,9 @@
 				{ field: "email", columnName: "邮箱"},
 				{ field: "description", columnName: "自我介绍"}
 			],
-			// url: "",
-			pageNum: 1,		// 显示第几页数据，默认1
-			pageSize: 10,	// 每页数据数量，默认10
+			url: "/jq-ui/ajax/admin_json.jsp",
+			pageNum: 1,			// 显示第几页数据，默认1
+			pageSize: 15,		// 每页数据数量，默认10
 			pagination: true	// 是否启用分页组件，默认启用
 		});
 	});
