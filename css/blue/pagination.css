@@ -1,0 +1,22 @@
+@IMPORT url("../pagination.css");
+
+.pagination a {
+	background: #E7F0FF;
+	border: 1px solid #95B8E7;
+}
+.pagination a.current-page {
+	background: #95B8E7;
+	border: 1px solid #95B8E7;
+}
+.pagination a:HOVER {
+	background: #95B8E7;
+	border: 1px solid #95B8E7;
+}
+.pagination a.disable-page {
+	color: #95B8E7;
+	border: 1px solid #95B8E7;
+}
+.pagination a.disable-page {
+	background: #ffffff;
+	cursor: default;
+}

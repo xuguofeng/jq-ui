@@ -1,0 +1,5 @@
+@IMPORT url("../accordion.css");
+
+.accordion .accordion-title {
+	background: #95B8E7;
+}

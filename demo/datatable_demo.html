@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+<title>jQuery插件开发学习之分页表格</title>
+
+<script>
+	$(function() {
+		$("#first-datatable").datatable({
+			// width: 400,		// 表格默认的宽，默认400
+			// height: 300,	// 表格默认的高，默认300
+			columns: [
+				{ field: "id", columnName: "编号"},
+				{ field: "username", columnName: "用户名"},
+				{ field: "age", columnName: "年龄"},
+				{ field: "phone", columnName: "联系电话"},
+				{ field: "email", columnName: "邮箱"},
+				{ field: "description", columnName: "自我介绍"}
+			],
+			// url: "",
+			pageNum: 1,		// 显示第几页数据，默认1
+			pageSize: 10,	// 每页数据数量，默认10
+			pagination: true	// 是否启用分页组件，默认启用
+		});
+	});
+</script>
+<table id="first-datatable"></table>

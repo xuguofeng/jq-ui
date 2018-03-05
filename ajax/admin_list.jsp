@@ -35,27 +35,6 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<style>
-	/* 表格样式 */
-	.list {
-		width: 100%;
-		margin-top: 5px;
-		font-size: 12px;
-	}
-	.list td, .list th {
-		padding: 5px 10px;
-		text-align: left;
-		border-bottom: 1px solid #dddddd;
-		border-left: 1px solid #dddddd;
-	}
-	.list th {
-		border-top: 1px solid #dddddd;
-		background: #f6f6f6;
-	}
-	.list tr td:last-child, .list tr th:last-child {
-		border-right: 1px solid #dddddd;
-	}
-	</style>
 	<script type="text/javascript">
 		$(function(){
 			$("#pagination3").pagination({

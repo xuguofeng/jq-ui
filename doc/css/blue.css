@@ -1,0 +1,12 @@
+/* api文档样式 */
+.api-desc p {
+	margin: 10px 0;
+	font-size: 14px;
+}
+.code {
+	padding: 10px;
+	font-size: 12px;
+	line-height: 24px;
+	background: #f6f6f6;
+	border: 1px solid #dddddd;
+}

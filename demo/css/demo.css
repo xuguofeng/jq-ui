@@ -23,14 +23,11 @@ img {
 }
 #top h2 {
 	margin-left: 20px;
-	color: #999;
 }
 #left {
 	float: left;
 	width: 250px;
 	font-size: 14px;
-	border-top: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
 }
 #right {
 	float: left;
@@ -42,6 +39,16 @@ img {
 	text-align: center;
 }
 #bottom span {
-	color: #999;
 	font-size: 12px;
+}
+
+/* 示例表格样式 */
+.list {
+	width: 100%;
+	margin-top: 5px;
+	font-size: 12px;
+}
+.list td, .list th {
+	padding: 5px 10px;
+	text-align: left;
 }

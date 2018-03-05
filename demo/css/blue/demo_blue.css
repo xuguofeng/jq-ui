@@ -1,0 +1,25 @@
+@IMPORT url("../demo.css");
+
+#top h2 {
+	color: #0E2D5F;
+}
+#left {
+	border-top: 1px solid #95B8E7;
+	border-bottom: 1px solid #95B8E7;
+}
+#bottom span {
+	color: #0E2D5F;
+}
+
+/* 示例表格样式 */
+.list td, .list th {
+	border-bottom: 1px solid #95B8E7;
+	border-left: 1px solid #95B8E7;
+}
+.list th {
+	border-top: 1px solid #95B8E7;
+	background: #E7F0FF;
+}
+.list tr td:last-child, .list tr th:last-child {
+	border-right: 1px solid #95B8E7;
+}

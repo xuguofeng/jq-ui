@@ -1,0 +1,13 @@
+@IMPORT url("../datatable.css");
+
+.datatable td, .datatable th {
+	border-bottom: 1px solid #95B8E7;
+	border-left: 1px solid #95B8E7;
+}
+.datatable th {
+	border-top: 1px solid #95B8E7;
+	background: #E7F0FF;
+}
+.datatable tr td:last-child, .datatable tr th:last-child {
+	border-right: 1px solid #95B8E7;
+}

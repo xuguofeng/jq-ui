@@ -1,0 +1,24 @@
+@IMPORT url("../tab.css");
+
+/* tab样式 */
+.tab {
+	border: 1px solid #95B8E7;
+}
+
+/* tab标签部分 */
+.tab .tab-header {
+	background-color: #E7F0FF;
+	border-bottom: 1px solid #95B8E7;
+}
+.tab .tab-header-item {
+	border: 1px solid #95B8E7;
+	border-bottom: none;
+}
+
+.tab-contextmenu {
+	border: 1px solid #95B8E7;
+	box-shadow: 1px 1px 1px #95B8E7;
+}
+.tab-contextmenu .tab-contextmenu-item:hover {
+	background: #95B8E7;
+}
