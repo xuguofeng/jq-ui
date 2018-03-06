@@ -122,8 +122,8 @@
 				rows.push(data[i]);
 		}
 		// 如果选择了一个就返回这个记录
-		if(rows.length == 1)
-			return rows[0];
+//		if(rows.length == 1)
+//			return rows[0];
 
 		// 如果选择了多个或没有选择就返回数组
 		return rows;

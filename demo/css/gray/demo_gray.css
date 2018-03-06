@@ -68,7 +68,7 @@ img {
 
 /* 按钮样式 */
 .default-button {
-	margin-bottom: 10px;
+	margin: 5px 5px 10px 5px;
 	padding: 1px 12px;
 	background-color: transparent;
 	outline: none;
@@ -77,6 +77,5 @@ img {
 	border: 1px solid #dddddd;
 }
 .default-button:hover {
-	/* border: 1px solid #999; */
 	background-color: #f6f6f6;
 }

@@ -35,11 +35,25 @@
 	 */
 	function del() {
 		var rows = $("#first-datatable").datatable("getSelectRows");
-		if(rows instanceof Array) {
-			
-		} else {
-			
+		if(rows.length < 1) {
+			alert("请至少选择一条数据");
+			return;
 		}
+		var ids = new Array();
+		for(var i = 0; i < rows.length; i++) {
+			var id = rows[i]["id"];
+			ids.push(id);
+		}
+		$.ajax({
+			type: "post",
+			dataType: "json",
+			data: { "ids": ids},
+			traditional: true,
+			url: "/jq-ui/ajax/admin_del.jsp",
+			success: function(data) {
+				console.log(data);
+			}
+		});
 	}
 	/*
 	 * 修改函数
@@ -52,3 +66,4 @@
 <button class="default-button" onclick="del();">删 除</button>
 <button class="default-button" onclick="reload();">刷 新</button>
 <table id="first-datatable"></table>
+<br /><br />
