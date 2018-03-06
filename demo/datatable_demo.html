@@ -9,18 +9,46 @@
 			width: "1000",
 			height: "auto",
 			columns: [
-				{ field: "id", columnName: "编号"},
-				{ field: "username", columnName: "用户名"},
-				{ field: "age", columnName: "年龄"},
-				{ field: "phone", columnName: "联系电话"},
-				{ field: "email", columnName: "邮箱"},
-				{ field: "description", columnName: "自我介绍"}
+				{ field: "id", columnName: "编号", css: { "text-align": "center" } },
+				{ field: "username", columnName: "用户名" },
+				{ field: "age", columnName: "年龄" },
+				{ field: "phone", columnName: "联系电话", css: { "text-align": "center" } },
+				{ field: "email", columnName: "邮箱" },
+				{ field: "description", columnName: "自我介绍" }
 			],
 			url: "/jq-ui/ajax/admin_json.jsp",
 			pageNum: 1,			// 显示第几页数据，默认1
 			pageSize: 15,		// 每页数据数量，默认10
-			pagination: true	// 是否启用分页组件，默认启用
+			pagination: true,	// 是否启用分页组件，默认启用
+			showCheckbox: true
 		});
 	});
+
+	/*
+	 * 点击"刷新"后调用datatable的reload函数重新加载数据
+	 */
+	function reload() {
+		$("#first-datatable").datatable("reload");
+	}
+	/*
+	 * 删除函数
+	 */
+	function del() {
+		var rows = $("#first-datatable").datatable("getSelectRows");
+		if(rows instanceof Array) {
+			
+		} else {
+			
+		}
+	}
+	/*
+	 * 修改函数
+	 */
+	function update() {
+		
+	}
 </script>
+<button class="default-button" onclick="update();">修 改</button>
+<button class="default-button" onclick="del();">删 除</button>
+<button class="default-button" onclick="reload();">刷 新</button>
 <table id="first-datatable"></table>

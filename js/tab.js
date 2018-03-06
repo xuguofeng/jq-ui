@@ -22,7 +22,6 @@
 	function initContentHeight($tab) {
 		$tab.css("height", ($tab.parent().height() - 2) + "px")
 			.find(".tab-content").css("height", ($tab.parent().height() - 58) + "px");
-			//.children().css("height", ($tab.parent().height() - 56) + "px");
 	}
 	
 	/**
@@ -39,9 +38,6 @@
 				selectTab($tab, $(this).attr("target"));
 			}
 		})
-//		.delegate(".tab-header-item", "contextmenu", function() {
-//			
-//		})
 		// 关闭按钮点击事件
 		.delegate(".close", "click", function() {
 			// 获取需要关闭的tab标签的tabId
@@ -85,16 +81,6 @@
 		.on("click", function() {
 			$(".tab-contextmenu").css("display", "none");
 		});
-		
-		// 旧版备份
-//		if (navigator.userAgent.toUpperCase().indexOf("FIREFOX") == -1)
-//			window.oncontextmenu = contextMenuHandler;
-//		else
-//			$("body").bind("contextmenu", contextMenuHandler);
-//		// 关闭右键菜单
-//		$(window).on("click", function() {
-//			$(".tab-contextmenu").css("display", "none");
-//		});
 	}
 	
 	/**
@@ -304,13 +290,9 @@
 						selectTab($(this), param);
 					});
 				case 'isSelected':
-					return this.each(function() {
-						isSelected($(this), param);
-					});
+					return isSelected($(this), param);
 				case 'isExists':
-					return this.each(function() {
-						isExists($(this), param);
-					});
+					return isExists($(this), param);
 			}
 		}
 		

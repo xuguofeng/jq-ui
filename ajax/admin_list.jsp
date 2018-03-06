@@ -9,7 +9,7 @@
 
 	Random r = new Random();
 
-	String[] phones = new String[]{"18902120811", "18902120812", "18902120813", "18902120814", "18902120815"};
+	String[] phones = new String[]{ "18902120811", "18902120812", "18902120813", "18902120814", "18902120815" };
 
 	for(int i = 1; i < 300; i++) {
 		User user = new User();
@@ -56,15 +56,16 @@
 	</script>
 </head>
 <body>
-<table cellpadding="0" cellspacing="0" class="list">
+<table cellpadding="0" cellspacing="0" class="list" style="width: 1000px">
 	<thead>
 		<tr>
-			<th>编号</th>
+			<th style="text-align: center">编号</th>
 			<th>用户名</th>
 			<th>年龄</th>
-			<th>联系电话</th>
+			<th style="text-align: center">联系电话</th>
 			<th>邮箱</th>
 			<th>自我介绍</th>
+			<th style="text-align: center">操作</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -72,12 +73,13 @@
 			for(User u : us) {
 		%>
 				<tr>
-					<td><%=u.getId() %></td>
+					<td style="text-align: center"><%=u.getId() %></td>
 					<td><%=u.getUsername() %></td>
 					<td><%=u.getAge() %></td>
-					<td><%=u.getPhone() %></td>
+					<td style="text-align: center"><%=u.getPhone() %></td>
 					<td><%=u.getEmail() %></td>
 					<td><%=u.getDescription() %></td>
+					<td style="text-align: center"><a href="#">删除</a> <a href="#">修改</a></td>
 				</tr>
 		<%	} %>
 	</tbody>

@@ -150,9 +150,7 @@
 			switch(options) {
 				// 获取当前页
 				case 'getCurrentPage':
-					return this.each(function() {
-						getCurrentPage($(this));
-					});
+					return getCurrentPage($(this));
 				// 跳转至指定页码
 				case 'toPage':
 					return this.each(function() {
@@ -161,9 +159,7 @@
 					});
 				// 获取显示的页码个数
 				case 'getSize':
-					return this.each(function() {
-						getSize($(this));
-					});
+					return getSize($(this));
 			}
 		}
 

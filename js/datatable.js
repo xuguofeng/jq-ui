@@ -9,11 +9,18 @@
 		var options = $.data($datatable[0], "datatable");
 		// 表头行
 		var tr = $("<tr></tr>");
+		// 选择列
+		if(options["showCheckbox"])
+			tr.append("<th style='text-align:center'>选择</th>");
+		
 		// 遍历columns参数
 		// 使用columnName填充td
 		// 把td追加到表头行
 		for(var i = 0; i < options["columns"].length; i++) {
-			tr.append("<th>" + options["columns"][i]["columnName"] + "</th>");
+			var th = $("<th>" + options["columns"][i]["columnName"] + "</th>");
+			if(options["columns"][i]["css"])
+				th.css(options["columns"][i]["css"]);
+			tr.append(th);
 		}
 		// 把表头行追加到thead
 		// 再把thead追加到$datatable
@@ -45,6 +52,8 @@
 			url: url,
 			data: { "pageNum": options["pageNum"], "pageSize": options["pageSize"] },
 			success: function(data) {
+				// 缓存数据
+				$.data($datatable[0], "data", data["users"]);
 				// 首先清空tbody
 				var tbody = $datatable.find("tbody").empty();
 				// 遍历数据集合
@@ -52,11 +61,18 @@
 					var user = data["users"][i];
 					// 定义一个tr
 					var tr = $("<tr></tr>");
+					// 添加复选框
+					if(options["showCheckbox"])
+						tr.append("<td style='text-align:center'><input type='checkbox' row-id='" + i + "' /></td>");
+					
 					// 遍历columns
 					// 获取每一个字段的值填充td
 					// 再把td追加到tr
 					for(var j = 0; j < options["columns"].length; j++) {
-						tr.append("<td>" + user[ options["columns"][j]["field"] ] + "</td>");
+						var td = $("<td>" + user[ options["columns"][j]["field"] ] + "</td>");
+						if(options["columns"][j]["css"])
+							td.css(options["columns"][j]["css"]);
+						tr.append(td);
 					}
 					// 把tr追加到tbody
 					tbody.append(tr);
@@ -86,27 +102,59 @@
 		});
 	}
 	
+	/**
+	 * 获取选择的行记录的数组
+	 * @param {Object} $datatable
+	 */
+	function getSelectRows($datatable) {
+		// 获取tbody中的所有tr
+		var trs = $datatable.find("tbody tr");
+		// 获取缓存中的行记录数据
+		var data = $.data($datatable[0], "data");
+		// 定义数组保存选择的行记录
+		var rows = new Array();
+		// 遍历全部tr
+		for(var i = 0; i < trs.length; i++) {
+			// 获取行首复选框的checked状态
+			// 如果选中就把对应的行记录放到rows数组
+			var checked = $(trs[i]).children().eq(0).find("input[row-id]").prop("checked");
+			if(checked)
+				rows.push(data[i]);
+		}
+		// 如果选择了一个就返回这个记录
+		if(rows.length == 1)
+			return rows[0];
+
+		// 如果选择了多个或没有选择就返回数组
+		return rows;
+	}
+	
 	$.fn.datatable = function(options, param) {
 
 		// 方法
 		if (typeof options == 'string') {
 			switch(options){
-//				case 'addTab':
-//					return this.each(function() {
-//						addTab($(this), param);
-//					});
+				// 重新加载数据
+				case 'reload':
+					return this.each(function() {
+						loadData($(this));
+					});
+				// 获取选择的行记录
+				case 'getSelectRows':
+					return getSelectRows($(this));
 			}
 		}
 		
 		// 默认参数配置
 		var defaults = {
-			width: "100%",		// 表格默认的宽，默认80%
+			width: "100%",		// 表格默认的宽，默认100%
 			height: "auto",		// 表格默认的高，默认auto
 			columns: [],
 			url: "",
 			pageNum: 1,			// 显示第几页数据，默认1
 			pageSize: 10,		// 每页数据数量，默认10
-			pagination: true	// 是否启用分页组件，默认启用
+			pagination: true,	// 是否启用分页组件，默认启用
+			showCheckbox: false	// 行首是否显示复选框，默认不显示
 		};
 		
 		// 合并自定义参数

@@ -5,11 +5,10 @@
 	 * @param {Object} $accordion
 	 */
 	function init($accordion) {
-		$accordion
+		$accordion.addClass("accordion")
 			.children("li:even").addClass("accordion-title").end()
-			.children("li:odd").addClass("accordion-body")
-			.css("display", "none").eq(0)
-			.css("display", "list-item");
+			.children("li:odd").addClass("accordion-body").css("display", "none").end()
+			.children("li.accordion-title").filter(".active").next().slideDown('100');
 	}
 	
 	/**
@@ -19,7 +18,7 @@
 	function initEvents($accordion) {
 		$accordion.delegate(".accordion-title", "click", function() {
 			// 为菜单title添加样式
-			$(this).addClass("active").siblings(".accordion-title").removeClass("active");
+			// $(this).addClass("active").siblings(".accordion-title").removeClass("active");
 			// 调用select选中指定菜单
 			select($accordion, $(this).attr("accordion-id"));
 		});
@@ -32,7 +31,11 @@
 	 */
 	function select($accordion, accordionId) {
 		// 面板动画切换
-		$accordion.children("li[accordion-id=" + accordionId + "]").next().slideDown('100').siblings('.accordion-body').slideUp('100');
+		var t = $accordion.children("li[accordion-id=" + accordionId + "]").next();
+		if(t.css("display") === "none")
+			t.slideDown('100').siblings('.accordion-body').slideUp('100');
+		else
+			t.slideUp('100');
 	}
 	
 	/**
@@ -54,9 +57,7 @@
 						select(accordion, param);
 					});
 				case 'isSelected':
-					return this.each(function() {
-						isSelected(accordion, param);
-					});
+					return isSelected(accordion, param);
 			}
 		}
 		

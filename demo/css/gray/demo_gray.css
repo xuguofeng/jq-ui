@@ -65,3 +65,18 @@ img {
 .list tr td:last-child, .list tr th:last-child {
 	border-right: 1px solid #dddddd;
 }
+
+/* 按钮样式 */
+.default-button {
+	margin-bottom: 10px;
+	padding: 1px 12px;
+	background-color: transparent;
+	outline: none;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 1px solid #dddddd;
+}
+.default-button:hover {
+	/* border: 1px solid #999; */
+	background-color: #f6f6f6;
+}
