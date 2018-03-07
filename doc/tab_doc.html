@@ -2,8 +2,6 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="/jq-ui/demo/css/gray/demo_gray.css" />
-	<link rel="stylesheet" href="/jq-ui/doc/css/gray.css" />
 </head>
 <body>
 <div class="api-desc">
@@ -14,7 +12,7 @@
 &lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
 
 &lt;script type="text/javascript" src="js/tab.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" href="css/tab.css"/&gt;</pre>
+&lt;link rel="stylesheet" href="css/blue/tab.css"/&gt;</pre>
 
 	<p>
 		在页面加载完成后初始化tab插件
@@ -22,7 +20,7 @@
 	<pre class="code">
 &lt;script&gt;
 	$(function() {
-		$(".tab").tab();
+		$("#tab1").tab();
 	});
 &lt;/script&gt;</pre>
 
@@ -30,7 +28,7 @@
 		页面代码
 	</p>
 	<pre class="code">
-&lt;div class="tab""&gt;
+&lt;div id="tab1"&gt;
 	&lt;ul&gt;&lt;/ul&gt;
 	&lt;div&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
@@ -86,7 +84,7 @@ $('.tab').tab(
 	{
 		'title': '管理员查看', 
 		'id': 'tab2', 
-		'url': 'http://127.0.0.1:8020/UI/ajax/admin_list.html',
+		'url': '/jq-ui/ajax/admin_list.html',
 		'method': 'get'
 	}
 );</pre>

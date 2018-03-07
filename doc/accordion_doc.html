@@ -2,8 +2,6 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="/jq-ui/demo/css/gray/demo_gray.css" />
-	<link rel="stylesheet" href="/jq-ui/doc/css/gray.css" />
 </head>
 <body>
 <div class="api-desc">
@@ -14,7 +12,7 @@
 &lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
 
 &lt;script type="text/javascript" src="js/accordion.js"&gt;&lt;/script&gt;
-&lt;link rel="stylesheet" href="css/accordion.css"/&gt;</pre>
+&lt;link rel="stylesheet" href="css/blue/accordion.css"/&gt;</pre>
 
 	<p>
 		在页面加载完成后初始化accordion插件
@@ -22,7 +20,7 @@
 	<pre class="code">
 &lt;script&gt;
 	$(function() {
-		$(".accordion").accordion();
+		$("#accordion1").accordion();
 	});
 &lt;/script&gt;</pre>
 
@@ -30,7 +28,7 @@
 		页面代码
 	</p>
 	<pre class="code">
-&lt;ul class="accordion"&gt;
+&lt;ul id="accordion1"&gt;
 	&lt;li accordion-id="menu1" class="active"&gt;插件使用&lt;/li&gt;
 	&lt;li&gt;
 		&lt;ul&gt;

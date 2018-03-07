@@ -2,7 +2,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
 <title>jQuery插件开发学习之分页表格</title>
-
 <script>
 	$(function() {
 		$("#first-datatable").datatable({
@@ -51,7 +50,10 @@
 			traditional: true,
 			url: "/jq-ui/ajax/admin_del.jsp",
 			success: function(data) {
-				console.log(data);
+				if(data["retCode"] == '0') {
+					alert("删除成功");
+					$("#first-datatable").datatable("reload");
+				}
 			}
 		});
 	}
@@ -59,7 +61,20 @@
 	 * 修改函数
 	 */
 	function update() {
-		
+		var rows = $("#first-datatable").datatable("getSelectRows");
+		if(rows.length != 1) {
+			alert("请选择一条数据");
+			return;
+		}
+		$('.tab').tab(
+			'addRemoteTab', 
+			{
+				'title': '修改管理员',
+				'id': 'admin_update',
+				'url': '/jq-ui/ajax/admin_update.jsp?id=' + rows[0]["id"],
+				'method': 'get'
+			}
+		);
 	}
 </script>
 <button class="default-button" onclick="update();">修 改</button>

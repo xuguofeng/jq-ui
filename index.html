@@ -11,31 +11,29 @@
 
 		<!-- tab库 -->
 		<script type="text/javascript" src="js/tab.js" ></script>
-		<!-- tab样式文件 -->
-		<link rel="stylesheet" href="css/gray/tab.css" />
+		<link rel="stylesheet" href="css/blue/tab.css" />
 
 		<!-- accordion库 -->
 		<script type="text/javascript" src="js/accordion.js" ></script>
-		<!-- accordion样式文件 -->
-		<link rel="stylesheet" href="css/gray/accordion.css" />
+		<link rel="stylesheet" href="css/blue/accordion.css" />
 
 		<!-- pagination库 -->
 		<script type="text/javascript" src="js/pagination.js" ></script>
-		<!-- pagination样式文件 -->
-		<link rel="stylesheet" href="css/gray/pagination.css" />
+		<link rel="stylesheet" href="css/blue/pagination.css" />
 
 		<!-- datatable库 -->
 		<script type="text/javascript" src="js/datatable.js" ></script>
-		<!-- datatable样式文件 -->
-		<link rel="stylesheet" href="css/gray/datatable.css" />
+		<link rel="stylesheet" href="css/blue/datatable.css" />
 
 		<!-- slider库 -->
 		<script type="text/javascript" src="js/slider/jquery.slider.js" ></script>
-		<!-- slider样式文件 -->
 		<link rel="stylesheet" href="js/slider/slider.css" />
 
 		<!-- demo页面样式 -->
-		<link rel="stylesheet" href="demo/css/gray/demo_gray.css" />
+		<link rel="stylesheet" href="demo/css/blue/demo.css" />
+		<link rel="stylesheet" href="demo/css/pagination_demo.css" />
+		
+		<link rel="stylesheet" href="doc/css/blue.css" />
 
 		<script>
 			$(function() {
@@ -54,7 +52,7 @@
 				$("#accordion1").accordion();
 
 				// tab选项卡
-				$(".tab").tab();
+				$("#tab1").tab();
 			});
 		</script>
 	</head>
@@ -78,7 +76,9 @@
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '分页表格示例', 'id': 'tab10', 'url': '/jq-ui/ajax/admin_list.jsp?pageNum=1&pageSize=10', 'method': 'get'});">分页表格示例</a></li>
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': 'slider插件', 'id': 'tab8', 'url': '/jq-ui/doc/slider_doc.html', 'method': 'get'});">轮播图插件手册</a></li>
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': 'slider插件', 'id': 'tab9', 'url': '/jq-ui/demo/slider_demo.html', 'method': 'get'});">轮播图插件示例</a></li>
+							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': 'datatable插件', 'id': 'tab12', 'url': '/jq-ui/doc/datatable_doc.html', 'method': 'get'});">异步分页表格插件手册</a></li>
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': 'datatable插件', 'id': 'tab11', 'url': '/jq-ui/demo/datatable_demo.html', 'method': 'get'});">异步分页表格插件示例</a></li>
+							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '页面风格替换', 'id': 'tab13', 'url': '/jq-ui/doc/theme_doc.html', 'method': 'get'});">页面风格替换</a></li>
 						</ul>
 					</li>
 					<li accordion-id="menu2">管理员管理</li>
@@ -110,7 +110,7 @@
 			<!-- 页面右侧 -->
 			<div id="right">
 				<!-- tab组件 -->
-				<div class="tab">
+				<div id="tab1">
 					<ul></ul>
 					<div></div>
 				</div>

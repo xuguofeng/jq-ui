@@ -23,7 +23,7 @@ img {
 }
 #top h2 {
 	margin-left: 20px;
-	color: #0E2D5F;
+	color: #95B8E7;
 }
 #left {
 	float: left;
@@ -43,7 +43,7 @@ img {
 }
 #bottom span {
 	font-size: 12px;
-	color: #0E2D5F;
+	color: #95B8E7;
 }
 
 /* 示例表格样式 */
@@ -60,8 +60,22 @@ img {
 }
 .list th {
 	border-top: 1px solid #95B8E7;
-	background: #E7F0FF;
+	background: #e6efff;
 }
 .list tr td:last-child, .list tr th:last-child {
 	border-right: 1px solid #95B8E7;
+}
+
+/* 按钮样式 */
+.default-button {
+	margin: 5px 5px 10px 0px;
+	padding: 1px 12px;
+	background-color: transparent;
+	outline: none;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 1px solid #95B8E7;
+}
+.default-button:hover {
+	background-color: #e6efff;
 }

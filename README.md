@@ -13,13 +13,13 @@
 ### 1.2  页面加载完成后初始化tab插件
 ```javascript
 $(function() {
-	$(".tab").tab();
+	$("#tab1").tab();
 });
 ```
 
 ### 1.3  页面代码
 ```html
-<div class="tab"">
+<div id="tab1"">
 	<ul></ul>
 	<div></div>
 </div>
@@ -42,13 +42,13 @@ $(function() {
 ### 2.2  页面加载完成后初始化accordion插件
 ```javascript
 $(function() {
-	$(".accordion").accordion();
+	$("#accordion1").accordion();
 });
 ```
 
 ### 2.3  页面代码
 ```html
-<ul class="accordion">
+<ul id="accordion1">
 	<li accordion-id="menu1" class="active">插件使用</li>
 	<li>
 		<ul>
@@ -168,7 +168,7 @@ $("#banner").slider({
 ajax目录：保存ajax请求响应文件 <br/>
 css目录：  保存插件css样式文件 <br/>
 demo目录：保存示例html和css样式文件，这个目录下的html不可以直接访问，只能通过首页的手风琴链接查看 <br/>
-doc目录：  保存插件API文档，这个目录下的html可以单独访问 <br/>
+doc目录：  保存插件API文档，这个目录下的html不可以直接访问，只能通过首页的手风琴链接查看 <br/>
 img目录：  保存插件和示例图片 <br/>
 js目录：    保存jquery库、插件库 <br/> <br/>
 

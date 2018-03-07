@@ -17,12 +17,13 @@
 	padding: 5px;
 	height: 25px;
 	line-height: 25px;
-	background: #dddddd;
+	background: #f6f6f6;
 	border-radius: 5px;
 	cursor: pointer;
 }
 .accordion .accordion-title:hover {
 	font-weight: bold;
+	background: #dddddd;
 }
 /* 菜单面板样式 */
 .accordion .accordion-body {

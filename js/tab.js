@@ -5,7 +5,7 @@
 	 * @param {Object} $tab
 	 */
 	function initTab($tab) {
-		$tab
+		$tab.addClass("tab")
 			.children("ul").addClass("tab-header")//.addClass("clearfix")
 			.children("li").addClass("tab-header-item").append($("<span class=\"close\"></span>"))
 			.eq(0).addClass("tab-header-selected");
