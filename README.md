@@ -3,9 +3,6 @@
 
 ## 1. 下载、部署
 使用以下命令把项目clone到tomcat的应用目录下面
-```java
-D：\ >git clone https：//github.com/xuguofeng/jq-ui.git D：\ProgramFiles\tomcat-6.0.35\webapps\jq-ui
-```
 启动tomcat访问 http://localhost:8080/jq-ui/ 即可看到页面效果
 
 
