@@ -2,8 +2,8 @@
 
 
 ## 1. 下载、部署
-使用以下命令把项目clone到tomcat的应用目录下面
-启动tomcat访问 http://localhost:8080/jq-ui/ 即可看到页面效果
+把项目clone到tomcat的应用目录下面<br />
+启动tomcat访问 localhost:8080/jq-ui/ 即可看到页面效果
 
 
 ## 2. tab插件
