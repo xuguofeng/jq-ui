@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div class="api-desc">
+	<p>
+		首先引入jquery库，然后引入datatable.js、datatable.css，如下：
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="js/datatable.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/blue/datatable.css"/&gt;</pre>
+
+	<p>
+		在页面加载完成后初始化datatable插件，以下代码只是最初步的初始化datatable插件样式，至于详细的交互过程（如：表格数据刷新、tab标签关闭打开等）还需要参考“异步分页表格插件示例”
+	</p>
+	<pre class="code">
+&lt;script&gt;
+	$("#first-datatable").datatable({
+		width: "1000",
+		height: "auto",
+		columns: [
+			{ field: "id", columnName: "编号", css: { "text-align": "center" } },
+			{ field: "username", columnName: "用户名" },
+			{ field: "age", columnName: "年龄" },
+			{ field: "phone", columnName: "联系电话", css: { "text-align": "center" } },
+			{ field: "email", columnName: "邮箱" },
+			{ field: "description", columnName: "自我介绍" }
+		],
+		url: "/jq-ui/ajax/admin_json.jsp",
+		pageNum: 1,			// 显示第几页数据，默认1
+		pageSize: 15,		// 每页数据数量，默认10
+		pagination: true,	// 是否启用分页组件，默认启用
+		showCheckbox: true
+	});
+&lt;/script&gt;</pre>
+
+	<p>
+		页面代码
+	</p>
+	<pre class="code">
+&lt;button class="default-button" onclick="update();"&gt;修 改&lt;/button&gt;
+&lt;button class="default-button" onclick="del();"&gt;删 除&lt;/button&gt;
+&lt;button class="default-button" onclick="reload();"&gt;刷 新&lt;/button&gt;
+&lt;table id="first-datatable">&lt;/table&gt;</pre>
+
+	<p>
+		datatable插件有以下初始化选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>width</td>
+				<td>int/百分比</td>
+				<td>表格的宽，默认100%</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>int</td>
+				<td>表格的高，默认auto</td>
+			</tr>
+			<tr>
+				<td>columns</td>
+				<td>Array</td>
+				<td>字段信息，默认是[]。如：[ { field: "", columnName: "", css: { "text-align": "center" } }, { field: "", columnName: "", css: { "text-align": "center" } }, ... ]</td>
+			</tr>
+			<tr>
+				<td>url</td>
+				<td>string</td>
+				<td>获取数据的远程地址</td>
+			</tr>
+			<tr>
+				<td>pageNum</td>
+				<td>int</td>
+				<td>显示第几页数据，默认1</td>
+			</tr>
+			<tr>
+				<td>pageSize</td>
+				<td>int</td>
+				<td>每页数据数量，默认10</td>
+			</tr>
+			<tr>
+				<td>pagination</td>
+				<td>boolean</td>
+				<td>是否启用分页组件，默认启用</td>
+			</tr>
+			<tr>
+				<td>showCheckbox</td>
+				<td>boolean</td>
+				<td>行首是否显示复选框，默认不显示</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		datatable插件有以下函数
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>函数名</th>
+				<th>参数</th>
+				<th>功能</th>
+				<th>返回值</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>reload</td>
+				<td></td>
+				<td>重新加载当前页数据</td>
+				<td></td>
+				<td>
+					<pre>
+$("#first-datatable").datatable("reload");</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>getSelectRows</td>
+				<td></td>
+				<td>获取选择的行记录</td>
+				<td>Array</td>
+				<td>
+					<pre>
+var rows = $("#first-datatable").datatable("getSelectRows");</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+</body>
+</html>
