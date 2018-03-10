@@ -24,6 +24,18 @@ img {
 #top h2 {
 	margin-left: 20px;
 	color: #95B8E7;
+	float: left;
+}
+#top a {
+	margin-left: 10px;
+	font-size: 14px;
+	font-style: italic;
+	color: #333333;
+	text-decoration: none;
+}
+#top a:HOVER {
+	color: #c81623;
+	text-decoration: underline;
 }
 #left {
 	float: left;
