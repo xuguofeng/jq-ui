@@ -5,12 +5,12 @@
 <%
 
 	String id = "0";
+	String table = request.getParameter("table");
 
 	String t = request.getParameter("t");
 
 	if("1".equals(t)) {
 		Map<String, String[]> m = request.getParameterMap();
-		System.out.println(m);
 		
 		out.print("{ \"retCode\": \"0\" }");
 		
@@ -28,7 +28,7 @@
 	}
 </style>
 <script type="text/javascript">
-	function updateAdmin() {
+	function updateAdmin(id) {
 		$.ajax({
 			type: "post",
 			dataType: "json",
@@ -39,7 +39,7 @@
 					alert("修改成功");
 					$('.tab').tab('removeTab', "admin_update");
 					$('.tab').tab('selectTab', "tab11");
-					$("#first-datatable").datatable("reload");
+					$("#" + id).datatable("reload");
 				}
 			}
 		});
@@ -73,7 +73,7 @@
 			<td><input name="" value="" /></td>
 		</tr>
 		<tr>
-			<td><input type="button" value=" 修 改 " onclick="updateAdmin();" /></td>
+			<td><input type="button" value=" 修 改 " onclick="updateAdmin('<%=table %>');" /></td>
 			<td></td>
 		</tr>
 	</table>
