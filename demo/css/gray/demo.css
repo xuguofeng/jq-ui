@@ -37,6 +37,14 @@ img {
 	color: #c81623;
 	text-decoration: underline;
 }
+#top .bdsharebuttonbox {
+	float: right;
+	height: 100%;
+	margin-right: 50px;
+}
+#top .bdsharebuttonbox a {
+	margin-top: 12px;
+}
 #left {
 	float: left;
 	width: 250px;
