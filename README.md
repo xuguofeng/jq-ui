@@ -1,4 +1,4 @@
-# [jQuery ui plugins](https://github.com/xuguofeng/jq-ui)
+# [jQuery ui plugins](http://5ijy01.duapp.com/jq-ui/index.html)
 
 
 ## 1. 下载、部署
