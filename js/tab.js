@@ -13,6 +13,8 @@
 			.children("div").addClass("tab-content")
 			.children("div").addClass("tab-content-item").addClass("hide")
 			.eq(0).removeClass("hide");
+		
+		$tab.children("ul").append("<li class='tab-header-select' title='显示隐藏'></li>");
 	}
 
 	/**
@@ -164,7 +166,26 @@
 				.attr("id", param["id"])
 				.addClass("tab-content-item")//.addClass("hide")
 				.appendTo($tab.children("div"));
+			
+			afterAddTab($tab, param);
+			
 		}
+	}
+	
+	function afterAddTab($tab, param) {
+		var head = $tab.children("ul");
+		console.log(head.outerWidth());
+		
+		var titles = head.children();
+		
+		var w1 = titles.eq(0).offset().left;
+		
+		titles.each(function(i) {
+			console.log($(this).outerWidth(), $(this).offset().left);
+			if(i > 0 && $(this).offset().left == w1){
+				$(this).remove();
+			}
+		});
 	}
 	
 	/**

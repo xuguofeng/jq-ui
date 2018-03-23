@@ -24,6 +24,23 @@
 	border-radius: 7px 7px 0 0;
 	cursor: pointer;
 }
+
+
+.tab-header-select {
+	float: right;
+	display: inline-block;
+	margin-top: 4px;
+	width: 16px;
+	height: 16px;
+	background: url(../../img/tabs_icons.png) no-repeat -17px center;
+	opacity: 0.5;
+}
+
+.tab-header-select:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
 /* 标签选中样式 */
 .tab .tab-header-item.tab-header-selected {
 	background: #ffffff;
