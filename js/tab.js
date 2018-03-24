@@ -6,13 +6,10 @@
 	 */
 	function initTab($tab) {
 		$tab.addClass("tab")
-			.children("ul").addClass("tab-header")//.addClass("clearfix")
-			.children("li").addClass("tab-header-item").append($("<span class=\"close\"></span>"))
-			.eq(0).addClass("tab-header-selected");
-		$tab
-			.children("div").addClass("tab-content")
-			.children("div").addClass("tab-content-item").addClass("hide")
-			.eq(0).removeClass("hide");
+			.children("ul").addClass("tab-header")
+			.append($("<li></li>").addClass("tab-header-items").css("width", $tab.outerWidth() - 25).append("<ul></ul>"))
+			.append($("<li></li>").addClass("tab-header-select tab-header-select-down").css("title", "显示隐藏").append("<ul class='hide-title-list'></ul>"));
+		$tab.append($("<ul></ul>").addClass("tab-overflow-items")).children("div").addClass("tab-content");
 	}
 
 	/**
@@ -36,6 +33,19 @@
 			if (!selected) {
 				// 如果这个选项卡没有选中，就调用selectTab函数进行选中
 				selectTab($tab, $(this).attr("target"));
+			}
+		})
+		// 打开隐藏标签选择框
+		.delegate(".tab-header-select", "click", function(e){
+			// 获取事件对象，需要兼容IE
+			var e = e || window.event;
+			e.preventDefault();
+			if($(this).hasClass("tab-header-select-down") && $(this).children().children().length > 0) {
+				$(this).removeClass("tab-header-select-down").addClass("tab-header-select-up");
+				$(this).children().css("display", "block");
+			} else {
+				$(this).removeClass("tab-header-select-up").addClass("tab-header-select-down");
+				$(this).children().css("display", "none");
 			}
 		})
 		// 关闭按钮点击事件
@@ -78,8 +88,16 @@
 		// 右键菜单显示
 		.bind("contextmenu", contextMenuHandler)
 		// 关闭右键菜单
-		.on("click", function() {
+		.on("click", function(ev) {
+			// 关闭右键菜单
 			$(".tab-contextmenu").css("display", "none");
+			
+			// 关闭隐藏标签选择框
+			// 获取事件对象，需要兼容IE
+			var e = ev || window.event;
+			var src = $(e.srcElement || e.target);
+			if(!src.hasClass("tab-header-select"))
+				closeSelect();
 		});
 	}
 	
@@ -88,6 +106,9 @@
 	 * @param {Object} ev
 	 */
 	function contextMenuHandler(ev) {
+		
+		// 关闭隐藏标签选择框
+		closeSelect();
 		
 		// 获取事件对象，需要兼容IE
 		var e = ev || window.event;
@@ -103,7 +124,7 @@
 		// 如果事件源对象是tab标签才显示右键菜单、绑定事件
 		if (src.hasClass("tab-header-item")) {
 			// 获取tab组件
-			var tab = src.parent().parent();
+			var tab = src.parentsUntil(".tab").parent();
 			// 选中点击的标签
 			tab.tab("selectTab", src.attr("target"));
 			// 取消默认的浏览器右键菜单
@@ -146,14 +167,14 @@
 			// 如果选项卡不存在，则先创建再将其选中
 
 			// 去掉选项卡标签的选中样式
-			$tab.children("ul").children().removeClass("tab-header-selected");
+			$tab.find(".tab-header-item").removeClass("tab-header-selected");
 			// 创建选项卡标签
 			$newHeaderItem = $("<li></li>");
 			$newHeaderItem
 				.text(param["title"])
 				.attr("target", param["id"])
 				.addClass("tab-header-item").addClass("tab-header-selected")
-				.append($("<span class=\"close\"></span>")).appendTo($tab.children("ul"));
+				.append($("<span class=\"close\"></span>")).appendTo($tab.find(".tab-header-items").children("ul"));
 
 			// 隐藏所有选项卡面板
 			$tab.children("div").children().addClass("hide");
@@ -162,8 +183,55 @@
 			$newContentItem
 				.html(param["content"])
 				.attr("id", param["id"])
-				.addClass("tab-content-item")//.addClass("hide")
+				.addClass("tab-content-item")
 				.appendTo($tab.children("div"));
+			
+			afterAddTab($tab);
+		}
+	}
+	
+	function afterAddTab($tab) {
+		var head = $tab.children("ul");
+		
+		var titles = head.find(".tab-header-items ul").children();
+		if(titles.length == 1) return;
+		
+		var w1 = titles.eq(0).offset().left;
+		var w2 = titles.eq(titles.length - 1).offset().left;
+		
+		if(w2 > w1) return;
+		
+		var headerWidth = head.children(".tab-header-items").outerWidth();
+		
+		var tmp = titles.eq(titles.length - 1).outerWidth(true);
+		var maxVisible = 0;
+		
+		titles.each(function(i) {
+			var w = $(this).outerWidth(true);
+			tmp += w;
+			if(tmp > headerWidth) {
+				maxVisible = i;
+				return false;
+			}
+		});
+		
+		var select = $tab.find(".tab-header-select ul");
+		
+		for(var j = maxVisible; j < titles.length - 1; j++) {
+			var t = titles.eq(j);
+			t.attr("real-width",  t.outerWidth()).appendTo($tab.find(".tab-overflow-items"));
+			select.append("<li item-id='" + t.attr("target") + "'>" + t.text() + "</li>");
+		}
+	}
+	
+	/**
+	 * 关闭隐藏标签选择框
+	 */
+	function closeSelect() {
+		if($(".tab-header-select").hasClass("tab-header-select-up")) {
+			$(".tab-header-select")
+				.removeClass("tab-header-select-up").addClass("tab-header-select-down")
+				.children().css("display", "none");
 		}
 	}
 	
@@ -195,7 +263,7 @@
 	 */
 	function removeTab($tab, tabId) {
 		// 获取待删除选项卡标签
-		var headerItem = $tab.children("ul").children("li[target="+ tabId +"]");
+		var headerItem = $tab.find(".tab-header-items ul").children("li[target="+ tabId +"]");
 		// 获取该选项卡是否被选中
 		var selected = headerItem.hasClass("tab-header-selected");
 		// 获取前一个选项卡
@@ -246,8 +314,7 @@
 			.siblings().removeClass("tab-header-selected");
 		// 调整选项卡面板样式
 		$tab
-			.children("div")
-			.children("#" + tabId).removeClass("hide")
+			.find("#" + tabId).removeClass("hide")
 			.siblings().addClass("hide");
 	}
 	

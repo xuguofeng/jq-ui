@@ -14,6 +14,10 @@
 	background-color: #e6efff;
 	border-bottom: 1px solid #95B8E7;
 }
+.tab .tab-header-items {
+	display: inline-block;
+	height: 100%;
+}
 .tab .tab-header-item {
 	position: relative;
 	float: left;
@@ -24,6 +28,29 @@
 	border-radius: 7px 7px 0 0;
 	cursor: pointer;
 }
+.tab .tab-header-select {
+	position: relative;
+	float: right;
+	display: inline-block;
+	margin-top: 4px;
+	width: 16px;
+	height: 16px;
+	opacity: 1;
+}
+.tab .tab-header-select-down {
+	background: url(../../img/accordion_arrows.png) no-repeat -17px center;
+}
+.tab .tab-header-select-up {
+	background: url(../../img/accordion_arrows.png) no-repeat 0px center;
+}
+.tab-header-select:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+.tab .tab-overflow-items {
+	display: none;
+}
+
 /* 标签选中样式 */
 .tab .tab-header-item.tab-header-selected {
 	background: #ffffff;
@@ -56,6 +83,31 @@
 	display: none;
 }
 
+/* 选择隐藏标签 */
+.tab .hide-title-list {
+	position: absolute;
+	top: 16px;
+	right: 0;
+	display: none;
+	padding: 5px;
+	overflow: hidden;
+	border: 1px solid #95B8E7;
+	box-shadow: 1px 1px 1px #888;
+	background: #FFFFFF;
+}
+.tab .hide-title-list li {
+	padding: 0 10px;
+	font-size: 14px;
+	line-height: 25px;
+	white-space:nowrap;
+	cursor: pointer;
+}
+.tab .hide-title-list li:hover {
+	color: #FFFFFF;
+	background: #95B8E7;
+}
+
+/* 标签右键菜单 */
 .tab-contextmenu {
 	display: none;
 	position: absolute;
