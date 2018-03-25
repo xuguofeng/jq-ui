@@ -94,6 +94,7 @@
 	border: 1px solid #95B8E7;
 	box-shadow: 1px 1px 1px #888;
 	background: #FFFFFF;
+	z-index: 1000;
 }
 .tab .hide-title-list li {
 	padding: 0 10px;

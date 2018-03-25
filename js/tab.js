@@ -36,10 +36,7 @@
 			}
 		})
 		// 打开隐藏标签选择框
-		.delegate(".tab-header-select", "click", function(e){
-			// 获取事件对象，需要兼容IE
-			var e = e || window.event;
-			e.preventDefault();
+		.delegate(".tab-header-select", "click", function(){
 			if($(this).hasClass("tab-header-select-down") && $(this).children().children().length > 0) {
 				$(this).removeClass("tab-header-select-down").addClass("tab-header-select-up");
 				$(this).children().css("display", "block");
@@ -47,6 +44,11 @@
 				$(this).removeClass("tab-header-select-up").addClass("tab-header-select-down");
 				$(this).children().css("display", "none");
 			}
+		})
+		// 打开隐藏标签选择框
+		.delegate(".tab-header-select ul li", "click", function(){
+			var tabId = $(this).attr("item-id");
+			selectTab($tab, tabId);
 		})
 		// 关闭按钮点击事件
 		.delegate(".close", "click", function() {
@@ -141,10 +143,13 @@
 						case 'prevAll':
 							return removeTabs(tab, src.prevAll());
 						case 'nextAll':
+							removeHideTitles(tab);
 							return removeTabs(tab, src.nextAll());
 						case 'other':
+							removeHideTitles(tab);
 							return removeTabs(tab, src.siblings());
 						case 'all':
+							removeHideTitles(tab);
 							return removeTabs(tab, src.parent().children());
 					}
 				});
@@ -190,11 +195,15 @@
 		}
 	}
 	
+	/**
+	 * 在标签header中添加了新的标签时执行
+	 * @param {Object} $tab
+	 */
 	function afterAddTab($tab) {
 		var head = $tab.children("ul");
 		
 		var titles = head.find(".tab-header-items ul").children();
-		if(titles.length == 1) return;
+		if(titles.length == 1 || titles.length == 0) return;
 		
 		var w1 = titles.eq(0).offset().left;
 		var w2 = titles.eq(titles.length - 1).offset().left;
@@ -219,7 +228,9 @@
 		
 		for(var j = maxVisible; j < titles.length - 1; j++) {
 			var t = titles.eq(j);
-			t.attr("real-width",  t.outerWidth()).appendTo($tab.find(".tab-overflow-items"));
+			t.removeClass("tab-header-selected")
+				.attr("real-width",  t.outerWidth())
+				.appendTo($tab.find(".tab-overflow-items"));
 			select.append("<li item-id='" + t.attr("target") + "'>" + t.text() + "</li>");
 		}
 	}
@@ -233,6 +244,15 @@
 				.removeClass("tab-header-select-up").addClass("tab-header-select-down")
 				.children().css("display", "none");
 		}
+	}
+	
+	/**
+	 * 删除全部隐藏标签
+	 * @param {Object} $tab
+	 */
+	function removeHideTitles($tab) {
+		$tab.find(".tab-overflow-items").children().remove();
+		$tab.find(".hide-title-list").children().remove();
 	}
 	
 	/**
@@ -268,10 +288,18 @@
 		var selected = headerItem.hasClass("tab-header-selected");
 		// 获取前一个选项卡
 		var prevItem = headerItem.prev();
+		// 该标签的前一个或者后一个标签id
+		var nextSelectedId = null;
 		
 		// 如果没有前一个，则获取后一个
-		if (!prevItem[0]) {
+		if (!prevItem[0])
 			prevItem = headerItem.next();
+		
+		if (prevItem[0]) {
+			nextSelectedId = prevItem.attr("target");
+		} else {
+			var hide1 = $tab.find(".hide-title-list li").eq(0);
+			if (hide1[0]) nextSelectedId = hide1.attr("item-id");
 		}
 		
 		// 删除选项卡标签
@@ -279,14 +307,34 @@
 		// 删除选项卡面板
 		$tab.children("div").children("#" + tabId).remove();
 		
-		// 如果待删除选项卡已经被选中且有相邻标签，则将相邻选项卡选中
-		if (selected && prevItem) {
-			// 标签样式
-			prevItem.addClass("tab-header-selected");
-			// 面板样式
-			$tab.children("div")
-				.children("#" + prevItem.attr("target")).removeClass("hide");
+		// 把隐藏的面板移上来
+		var head = $tab.children("ul");
+		var titles = head.find(".tab-header-items ul").children();
+		
+		var hideTitles = $tab.find(".tab-overflow-items").children();
+		
+		var visibleWidth = 0;
+		
+		titles.each(function() {
+			visibleWidth += $(this).outerWidth();
+		});
+		
+		var j;
+		var headerWidth = head.children(".tab-header-items").outerWidth();
+		for(j = 0; j < hideTitles.length; j++) {
+			visibleWidth += parseInt(hideTitles.eq(j).attr("real-width"));
+			if (visibleWidth >= headerWidth)
+				break;
 		}
+		
+		for(var k = 0; k < j; k++) {
+			hideTitles.eq(k).appendTo($tab.find(".tab-header-items").children("ul"));
+			$tab.find(".hide-title-list").children().eq(k).remove();
+		}
+		
+		// 如果待删除选项卡已经被选中且有相邻标签，则将相邻选项卡选中
+		if (selected && nextSelectedId)
+			selectTab($tab, nextSelectedId);
 	}
 	
 	/**
@@ -308,14 +356,30 @@
 	 * @param {Object} tabId
 	 */
 	function selectTab($tab, tabId) {
+		
 		// 调整选项卡标签样式
-		$tab
-			.find("li[target=" + tabId + "]").addClass("tab-header-selected")
-			.siblings().removeClass("tab-header-selected");
+		
+		var headItems = $tab.find(".tab-header-items");
+		var tab = headItems.find("li[target=" + tabId + "]");
+		
+		if(tab[0]) {
+			tab.addClass("tab-header-selected")
+				.siblings().removeClass("tab-header-selected");
+		} else {
+			tab = $tab.find(".tab-overflow-items").children("li[target=" + tabId + "]");
+			if(tab[0]) {
+				headItems.find("ul li").removeClass("tab-header-selected");
+				tab.addClass("tab-header-selected").appendTo(headItems.children("ul"));
+				$tab.find(".hide-title-list").children("li[item-id=" + tabId + "]").remove();
+			}
+		}
+		
 		// 调整选项卡面板样式
 		$tab
 			.find("#" + tabId).removeClass("hide")
 			.siblings().addClass("hide");
+		
+		afterAddTab($tab);
 	}
 	
 	/**
