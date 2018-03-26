@@ -47,7 +47,9 @@
 		})
 		// 打开隐藏标签选择框
 		.delegate(".tab-header-select ul li", "click", function(){
+			// 获取选中的隐藏标签的item-id
 			var tabId = $(this).attr("item-id");
+			// 选中这个标签
 			selectTab($tab, tabId);
 		})
 		// 关闭按钮点击事件
@@ -200,18 +202,26 @@
 	 * @param {Object} $tab
 	 */
 	function afterAddTab($tab) {
-		var head = $tab.children("ul");
+		// 获取可见标签容器
+		var headItem = $tab.find(".tab-header-items");
 		
-		var titles = head.find(".tab-header-items ul").children();
-		if(titles.length == 1 || titles.length == 0) return;
+		// 获取全部课件标签
+		var titles = headItem.find("ul").children();
 		
+		// 当标签个数小于等于1个时，不做任何操作
+		if(titles.length <= 1) return;
+		
+		// 获取第一个可见标签的左偏移量
 		var w1 = titles.eq(0).offset().left;
+		// 获取最后一个可见标签的左偏移量
 		var w2 = titles.eq(titles.length - 1).offset().left;
 		
+		// 当最后一个标签在第一个右边时，说明可见标签个数未超出父元素宽度，不做任何操作
 		if(w2 > w1) return;
 		
-		var headerWidth = head.children(".tab-header-items").outerWidth();
-		
+		// 获取可见标签容器的宽度
+		var headerWidth = headItem.outerWidth();
+		// 获取最后一个可见标签的宽度
 		var tmp = titles.eq(titles.length - 1).outerWidth(true);
 		var maxVisible = 0;
 		
@@ -225,7 +235,7 @@
 		});
 		
 		var select = $tab.find(".tab-header-select ul");
-		
+		// 把需要隐藏的标签隐藏起来
 		for(var j = maxVisible; j < titles.length - 1; j++) {
 			var t = titles.eq(j);
 			t.removeClass("tab-header-selected")
