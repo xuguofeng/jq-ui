@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+<script>
+// 页面加载后刷新时间戳
+$(function() {
+	document.getElementById("timestamp").innerHTML = "对话框真的刷新啦 :) " + new Date().getTime();
+});
+
+// 全选
+function checkAll() {
+	var checks = document.getElementsByClassName("user-check");
+	for (var i = 0; i < checks.length; i++) {
+		var check = checks[i];
+		check.checked = true;
+	}
+}
+// 取消
+function cancelAll() {
+	var checks = document.getElementsByClassName("user-check");
+	for (var i = 0; i < checks.length; i++) {
+		var check = checks[i];
+		check.checked = false;
+	}
+}
+// 反选
+function reverseAll() {
+	var checks = document.getElementsByClassName("user-check");
+	for (var i = 0; i < checks.length; i++) {
+		var check = checks[i];
+		if (check.checked)
+			check.checked = false;
+		else
+			check.checked = true;
+	}
+}
+// 刷新对话框
+function refresh() {
+	$.dialog.reload("dialog1");
+}
+// 关闭对话框
+function closeDialog() {
+	$.dialog.close("dialog1");
+}
+</script>
+</head>
+<body>
+<span id="timestamp"></span><br />
+<button class="default-button" onclick="checkAll();">全选</button>
+<button class="default-button" onclick="cancelAll();">取消</button>
+<button class="default-button" onclick="reverseAll();">反选</button>
+<button class="default-button" onclick="refresh();">刷新</button>
+<button class="default-button" onclick="closeDialog();">关闭</button>
+<table cellpadding="0" cellspacing="0" class="list" style="width: 100%">
+	<thead>
+		<tr>
+			<th style="text-align: center;">选择</th>
+			<th>编号</th>
+			<th>用户名</th>
+			<th>年龄</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>1</td>
+			<td>admin01</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>2</td>
+			<td>admin02</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>3</td>
+			<td>admin03</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>4</td>
+			<td>admin04</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>5</td>
+			<td>admin05</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>6</td>
+			<td>admin06</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>7</td>
+			<td>admin07</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>8</td>
+			<td>admin08</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>9</td>
+			<td>admin09</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>10</td>
+			<td>admin10</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>11</td>
+			<td>admin11</td>
+			<td>35</td>
+		</tr>
+		
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>12</td>
+			<td>admin12</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>13</td>
+			<td>admin13</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>14</td>
+			<td>admin14</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>15</td>
+			<td>admin15</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>16</td>
+			<td>admin16</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>17</td>
+			<td>admin17</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>18</td>
+			<td>admin18</td>
+			<td>35</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><input type="checkbox" class="user-check" /></td>
+			<td>19</td>
+			<td>admin19</td>
+			<td>35</td>
+		</tr>
+	</tbody>
+</table>
+<br />
+</body>
+</html>
