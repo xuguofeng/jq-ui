@@ -89,7 +89,7 @@ img {
 /* 按钮样式 */
 .default-button {
 	margin: 5px 5px 10px 0px;
-	padding: 1px 12px;
+	padding: 5px 15px;
 	background-color: transparent;
 	outline: none;
 	border-radius: 5px;

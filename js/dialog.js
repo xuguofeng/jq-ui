@@ -1,7 +1,7 @@
 (function($) {
 	
 	// dialog的z-index样式，随着dialog的增加而增加
-	var zIndex = 1100;
+	window[ 'zIndex' ] = 1100;
 
 	/**
 	 * 初始化dialog的html结构
@@ -56,7 +56,7 @@
 	 */
 	function bindEvent(dialog) {
 		dialog.find("div.dialog-close").click(function(){
-			dialog.remove();
+			$.dialog.close(dialog[0].id);
 			// 如果是模态窗口，还需要把mask层关掉
 			if ($(".dialog-mask")[0])
 				$(".dialog-mask").remove();
@@ -144,12 +144,45 @@
 	 * 创建body遮罩层
 	 */
 	function createMask() {
-		return $("<div class='dialog-mask'></div>").css("z-index", ++zIndex).appendTo($("body"));
+		return $("<div class='dialog-mask'></div>").css("z-index", ++window[ 'zIndex' ]).appendTo($("body"));
 	}
+
+	var show = {
+		slide: function(dialog) {
+			dialog.slideDown("200");
+		},
+		fade: function(dialog) {
+			dialog.fadeIn("200");
+		}
+	};
+	var hide = {
+		slide: function(dialog) {
+			dialog.slideUp("200", function() {
+				dialog.remove();
+			});
+		},
+		fade: function(dialog) {
+			dialog.fadeOut("200", function() {
+				dialog.remove();
+			});
+		}
+	};
 
 	$.dialog = {
 		// 打开一个dialog
 		open: function(options) {
+			// 创建dialog
+			var dialog = this.create(options);
+
+			// 把对话框追加到body末尾
+			dialog.css({"z-index": ++window[ 'zIndex' ]}).appendTo($("body"));
+			// 显示dialog
+			if(options['showType'])
+				show[options['showType']](dialog);
+			else
+				dialog.css("display", "block");
+		},
+		create: function(options) {
 			// 默认配置
 			var defaultSettings = {
 				id: undefined,
@@ -158,7 +191,8 @@
 				height: 300,
 				modal: false,
 				url: '',
-				content: ''
+				content: '',
+				showType: '' // slide|fade
 			};
 			// 合并默认配置和用户配置参数
 			var options = $.extend(defaultSettings, options);
@@ -185,13 +219,10 @@
 			bindEvent(dialog);
 			bindDrag(dialog);
 			load(dialog, options);
-
+			
 			// 如果是模态窗口，需要创建遮挡层
 			if (options[ 'modal' ])
 				createMask();
-
-			// 把对话框追加到body末尾
-			dialog.css({"display": "block", "z-index": ++zIndex}).appendTo($("body"));
 
 			// 缓存
 			$.data(dialog[0], "dialog", options);
@@ -203,7 +234,14 @@
 		close: function(id) {
 			var dialog = $("#" + id);
 			if(dialog[0]) {
-				dialog.remove();
+				var options = $.data(dialog[0], "dialog");
+				
+				// 关闭dialog
+				if(options['showType'])
+					hide[options['showType']](dialog);
+				else
+					dialog.remove();
+				
 				// 如果是模态窗口，还需要把mask层关掉
 				if ($(".dialog-mask")[0])
 					$(".dialog-mask").remove();
@@ -214,9 +252,8 @@
 			var dialog = $("#" + id);
 			if(dialog[0]) {
 				var options = $.data(dialog[0], "dialog");
-				if(options["url"]) {
+				if(options["url"])
 					ajaxLoad(dialog, options["url"]);
-				}
 			}
 		}
 	};
