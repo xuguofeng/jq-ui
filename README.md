@@ -212,7 +212,63 @@ $("#first-datatable").datatable({
 
 
 
-## 7. Demo项目说明
+## 7. dialog插件
+### 7.1  引入jquery库、dialog.js库、dialog.css样式文件
+```html
+<script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript" src="js/dialog.js"></script>
+<link rel="stylesheet" href="css/blue/dialog.css"/>
+```
+
+### 7.2  打开一个dialog对话框
+```javascript
+$.dialog.open({
+	id: 'dialog1',
+	url: 'ajax/admin_dialog.html',
+	width: 600,
+	height: 400,
+	title: '使用url加载数据',
+	modal: true,
+	showType: 'slide'
+});
+```
+
+### 7.3  效果
+![Github](https://github.com/xuguofeng/jq-ui/raw/master/img/demo/dialog_demo.jpg)
+
+
+
+## 8. messager插件
+### 8.1  引入jquery库、messager.js库、messager.css样式文件
+```html
+<script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript" src="js/messager.js"></script>
+<link rel="stylesheet" href="css/blue/messager.css"/>
+```
+
+### 8.2  打开一个alert提示框
+```javascript
+$.messager.alert({
+	title: '信息',
+	content: '请填写执行情况(200字以内)',
+	level: 'warning',
+	btn: '知道了',
+	time: 1000,
+	callback: function() {
+		// location.reload();
+	},
+	showType: 'slide'
+});
+```
+
+### 8.3  效果
+![Github](https://github.com/xuguofeng/jq-ui/raw/master/img/demo/messager_demo.jpg)
+
+
+
+## 9. Demo项目说明
 ajax目录：保存ajax请求响应文件 <br/>
 css目录：  保存插件css样式文件 <br/>
 demo目录：保存示例html和css样式文件，这个目录下的html不可以直接访问，只能通过首页的手风琴链接查看 <br/>
@@ -224,7 +280,7 @@ index.html文件是demo项目的入口 <br/>
 
 
 
-## 8. 说明
+## 10. 说明
 我是一个jQuery插件开发的初学者，现在是一边学习一边开发，代码难免有一些不足之处，您在使用插件时还是需要进行详细测试。 <br/>
 如果您有需求优化、代码优化、BUG修复上的建议，您可以通过QQ联系我：947805384  <br/>
 

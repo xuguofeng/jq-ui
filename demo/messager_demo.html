@@ -9,19 +9,26 @@
 			content: '请填写执行情况(200字以内)',
 			level: 'warning', // success|info|question|warning|error
 			btn: '知道了',
-			time: 1000,
+			time: 2000,
+			callback: function() {
+				// location.reload();
+			},
 			showType: 'slide' // slide|fade
 		});
 	}
 	function openConfirm() {
 		$.messager.confirm({
 			title: '信息',
-			content: '您确定删除员工“徐国峰”吗？',
+			content: '您确定删除员工“John”吗？',
 			btn: [ 
-			       { text: '确定', callback: function() { alert("删除了"); } }, 
-			       { text: '取消', callback: function() { alert("不删除"); } }
-			],
-			showType: 'fade'
+			       { text: '确定', callback: function() { 
+						$.messager.message({
+				   			content: '员工数据删除成功。',
+							time: 2000
+				   		});
+			       } }, 
+			       { text: '取消', callback: function() {} }
+			]
 		});
 	}
 	function openMessage() {
@@ -29,6 +36,11 @@
 			title: '信息',
 			content: '员工数据删除成功。',
 			showType: 'fade',
+			callback: function() {
+				//$('#tab1').tab(
+				//	'removeTab', 'tab15'
+				//);
+			},
 			time: 2000
 		});
 	}
@@ -43,6 +55,9 @@ function openAlert() {
 		level: 'warning', // success|info|question|warning|error
 		btn: '知道了',
 		time: 1000,
+		callback: function() {
+			// location.reload();
+		},
 		showType: 'slide' // slide|fade
 	});
 }
@@ -54,12 +69,16 @@ function openAlert() {
 function openConfirm() {
 	$.messager.confirm({
 		title: '信息',
-		content: '您确定删除员工“徐国峰”吗？',
+		content: '您确定删除员工“John”吗？',
 		btn: [ 
-		       { text: '确定', callback: function() { alert("删除了"); } }, 
-		       { text: '取消', callback: function() { alert("不删除"); } }
-		],
-		showType: 'fade'
+		       { text: '确定', callback: function() { 
+					$.messager.message({
+			   			content: '员工数据删除成功。',
+						time: 2000
+			   		});
+		       } }, 
+		       { text: '取消', callback: function() {} }
+		]
 	});
 }
 </pre>
@@ -72,6 +91,11 @@ function openMessage() {
 		title: '信息',
 		content: '员工数据删除成功。',
 		showType: 'fade',
+		callback: function() {
+			//$('#tab1').tab(
+			//	'removeTab', 'tab15'
+			//);
+		},
 		time: 2000
 	});
 }

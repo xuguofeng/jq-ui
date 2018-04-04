@@ -10,8 +10,8 @@
 		return $("<button>" + text + "</button>")
 				.addClass("default-button")
 				.click(function() {
-					$.dialog.close($(this).parentsUntil(".dialog-container").parent().attr("id"));
-					if(fn) fn();
+					$.dialog.close($(this).parentsUntil(".dialog-container").parent().attr("id"), fn);
+					// if(fn) fn();
 				});
 	}
 
@@ -32,6 +32,8 @@
 
 	$.messager = {
 
+		__top: 8,
+
 		alert: function(options) {
 			// 默认配置
 			var defaultSettings = {
@@ -41,6 +43,7 @@
 				content: '页面出现错误。',
 				level: 'warning', // success|info|question|warning|error
 				btn: '确定',
+				callback: null, // 回调函数
 				modal: true,
 				time: 0,
 				showType: '' // slide|fade
@@ -66,9 +69,11 @@
 				title: options['title'],
 				width: options['width'],
 				height: options['height'],
+				top: this.__top,
 				html: [ messageContent, messageButtonContainer ],
 				modal: options['modal'],
-				showType: options[ 'showType' ]
+				showType: options[ 'showType' ],
+				onClose: options[ 'callback' ]
 			});
 
 			// 定时关闭
@@ -78,7 +83,7 @@
 		confirm: function(options) {
 
 			var defaultSettings = {
-				title: '信息',
+				title: '确认',
 				width: 250,
 				height: 170,
 				content: '请确认？',
@@ -111,6 +116,7 @@
 				title: options['title'],
 				width: options['width'],
 				height: options['height'],
+				top: this.__top,
 				html: [ messageContent, messageButtonContainer ],
 				modal: options['modal'],
 				showType: options[ 'showType' ]
@@ -124,6 +130,7 @@
 				width: 250,
 				height: 120,
 				content: '操作成功。',
+				callback: null, // 回调函数
 				modal: false,
 				time: 0,
 				showType: '' // slide|fade
@@ -142,9 +149,11 @@
 				title: options['title'],
 				width: options['width'],
 				height: options['height'],
+				top: this.__top,
 				html: [ messageContent ],
 				modal: options['modal'],
-				showType: options[ 'showType' ]
+				showType: options[ 'showType' ],
+				onClose: options[ 'callback' ]
 			});
 
 			// 定时关闭

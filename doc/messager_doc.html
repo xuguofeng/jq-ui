@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div class="api-desc">
+	<p>
+		首先引入jquery库，然后引入messager.js、messager.css，如下：
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="js/messager.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/blue/messager.css"/&gt;</pre>
+
+	<p>
+		messager插件是$.messager上面的静态函数，有：alert、confirm和message三个函数
+	</p>
+	<pre class="code">
+&lt;script&gt;
+	function openAlert() {
+		$.messager.alert({
+			title: '信息',
+			content: '请填写执行情况(200字以内)',
+			level: 'warning', // success|info|question|warning|error
+			btn: '知道了',
+			time: 1000,
+			callback: function() {
+				// location.reload();
+			},
+			showType: 'slide' // slide|fade
+		});
+	}
+	function openConfirm() {
+		$.messager.confirm({
+			title: '信息',
+			content: '您确定删除员工“John”吗？',
+			btn: [ 
+			       { text: '确定', callback: function() { 
+						$.messager.message({
+				   			content: '员工数据删除成功。',
+							time: 2000
+				   		});
+			       } }, 
+			       { text: '取消', callback: function() {} }
+			]
+		});
+	}
+	function openMessage() {
+		$.messager.message({
+			title: '信息',
+			content: '员工数据删除成功。',
+			showType: 'fade',
+			callback: function() {
+				//$('#tab1').tab(
+				//	'removeTab', 'tab15'
+				//);
+			},
+			time: 2000
+		});
+	}
+&lt;/script&gt;</pre>
+
+	<p>
+		页面代码
+	</p>
+	<pre class="code">
+&lt;button class="default-button" onclick="openAlert();"&gt;alert&lt;/button&gt;
+&lt;br /&gt;
+&lt;button class="default-button" onclick="openConfirm();"&gt;confirm&lt;/button&gt;
+&lt;br /&gt;
+&lt;button class="default-button" onclick="openMessage();"&gt;message&lt;/button&gt;</pre>
+
+	<p>
+		$.messager有以下函数
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>函数名</th>
+				<th>参数</th>
+				<th>功能</th>
+				<th>返回值</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>alert</td>
+				<td>Object</td>
+				<td>打开一个提示框</td>
+				<td>无</td>
+				<td>
+					<pre>
+$.messager.alert({
+	title: '信息',
+	content: '请填写执行情况(200字以内)',
+	level: 'warning',
+	btn: '知道了',
+	time: 1000,
+	callback: function() {
+		// location.reload();
+	},
+	showType: 'slide'
+});</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>confirm</td>
+				<td>Object</td>
+				<td>打开一个确认框</td>
+				<td>无</td>
+				<td>
+					<pre>
+$.messager.confirm({
+	title: '信息',
+	content: '您确定删除员工“John”吗？',
+	btn: [ 
+	       { text: '确定', callback: function() { 
+				$.messager.message({
+		   			content: '员工数据删除成功。',
+					time: 2000
+		   		});
+	       } }, 
+	       { text: '取消', callback: function() {} }
+	]
+});</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>message</td>
+				<td>Object</td>
+				<td>打开一个消息框</td>
+				<td>无</td>
+				<td>
+					<pre>
+$.messager.message({
+	title: '信息',
+	content: '员工数据删除成功。',
+	showType: 'fade',
+	callback: function() {
+		//$('#tab1').tab(
+		//	'removeTab', 'tab15'
+		//);
+	},
+	time: 2000
+});</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		$.messager.alert函数支持以下配置选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>title</td>
+				<td>string</td>
+				<td>提示框的标题，默认为“信息”</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>int</td>
+				<td>提示框插件div的宽，默认250</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>int</td>
+				<td>提示框插件div的高，默认170</td>
+			</tr>
+			<tr>
+				<td>modal</td>
+				<td>boolean</td>
+				<td>模态对话框配置，默认true</td>
+			</tr>
+			<tr>
+				<td>content</td>
+				<td>string</td>
+				<td>内容字符串，默认为“页面出现错误。”</td>
+			</tr>
+			<tr>
+				<td>level</td>
+				<td>string</td>
+				<td>设置提示级别图标，内置有success、info、question、warning和error，默认warning</td>
+			</tr>
+			<tr>
+				<td>btn</td>
+				<td>string</td>
+				<td>按钮显示的文字，默认“确定”</td>
+			</tr>
+			<tr>
+				<td>callback</td>
+				<td>function</td>
+				<td>关闭时执行的函数，默认null</td>
+			</tr>
+			<tr>
+				<td>time</td>
+				<td>int</td>
+				<td>该值大于0时，提示框会在对应毫秒后自动关闭，默认0即不会自动关闭</td>
+			</tr>
+			<tr>
+				<td>showType</td>
+				<td>string</td>
+				<td>显示、关闭提示框时的动画效果，有slide和fade两种，默认无动画效果</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		$.messager.confirm函数支持以下配置选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>title</td>
+				<td>string</td>
+				<td>确认框的标题，默认为“确认”</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>int</td>
+				<td>确认框插件div的宽，默认250</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>int</td>
+				<td>确认框插件div的高，默认170</td>
+			</tr>
+			<tr>
+				<td>modal</td>
+				<td>boolean</td>
+				<td>模态对话框配置，默认true</td>
+			</tr>
+			<tr>
+				<td>content</td>
+				<td>string</td>
+				<td>内容字符串，默认为“请确认？”</td>
+			</tr>
+			<tr>
+				<td>btn</td>
+				<td>[]</td>
+				<td>定义按钮文字内容、点击函数，例如：
+				<br />
+				btn: [ <br />
+				&nbsp;&nbsp;&nbsp;&nbsp;{ text: '确定', callback: function() {} }, <br />
+				&nbsp;&nbsp;&nbsp;&nbsp;{ text: '取消', callback: function() {} }  <br />
+				]</td>
+			</tr>
+			<tr>
+				<td>showType</td>
+				<td>string</td>
+				<td>显示、关闭确认框时的动画效果，有slide和fade两种，默认无动画效果</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		$.messager.message函数支持以下配置选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>title</td>
+				<td>string</td>
+				<td>消息框的标题，默认为“信息”</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>int</td>
+				<td>消息框插件div的宽，默认250</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>int</td>
+				<td>消息框插件div的高，默认120</td>
+			</tr>
+			<tr>
+				<td>modal</td>
+				<td>boolean</td>
+				<td>模态对话框配置，默认false</td>
+			</tr>
+			<tr>
+				<td>content</td>
+				<td>string</td>
+				<td>内容字符串，默认为“操作成功。”</td>
+			</tr>
+			<tr>
+				<td>callback</td>
+				<td>function</td>
+				<td>关闭时执行的函数，默认null</td>
+			</tr>
+			<tr>
+				<td>time</td>
+				<td>int</td>
+				<td>该值大于0时，消息框会在对应毫秒后自动关闭，默认0即不会自动关闭</td>
+			</tr>
+			<tr>
+				<td>showType</td>
+				<td>string</td>
+				<td>显示、关闭消息框时的动画效果，有slide和fade两种，默认无动画效果</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+</body>
+</html>

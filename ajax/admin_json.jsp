@@ -16,7 +16,7 @@
 		User user = new User();
 		user.setId(i);
 		user.setAge(r.nextInt(80) + 1);
-		user.setUsername(String.format("%s%04d", "徐国峰", i));
+		user.setUsername(String.format("%s%04d", "John", i));
 		user.setPhone(phones[r.nextInt(phones.length)]);
 		user.setEmail(user.getUsername() + "@189.cn");
 		user.setDescription("我是" + user.getUsername());

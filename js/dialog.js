@@ -38,7 +38,7 @@
 		dialog.css({
 			"width": options["width"],
 			"height": options["height"],
-			"top": (screenHeight - options["height"])/3,
+			"top": (screenHeight - options["height"])/options['top'],
 			"left": (screenWidth - options["width"])/2
 		});
 		// 设置内容div大小
@@ -158,21 +158,25 @@
 	// 对话框显示和隐藏的动画效果
 	var show = {
 		slide: function(dialog) {
-			dialog.slideDown("200");
+			dialog.slideDown("100");
 		},
 		fade: function(dialog) {
-			dialog.fadeIn("200");
+			dialog.fadeIn("100");
 		}
 	};
 	var hide = {
-		slide: function(dialog) {
-			dialog.slideUp("200", function() {
+		slide: function(dialog, fn) {
+			dialog.slideUp("100", function() {
 				dialog.remove();
+				// 调用关闭函数
+				if(fn) fn();
 			});
 		},
-		fade: function(dialog) {
-			dialog.fadeOut("200", function() {
+		fade: function(dialog, fn) {
+			dialog.fadeOut("100", function() {
 				dialog.remove();
+				// 调用关闭函数
+				if(fn) fn();
 			});
 		}
 	};
@@ -200,11 +204,13 @@
 				title: undefined,
 				width: 500,
 				height: 300,
+				top: 3,
 				modal: false,
 				url: '',
 				content: '',
 				html: undefined,// [ jquery1, jquery2, ...... ],
-				showType: '' // slide|fade
+				showType: '', // slide|fade
+				onClose: null // 关闭时调用的函数
 			};
 			// 合并默认配置和用户配置参数
 			var options = $.extend(defaultSettings, options);
@@ -231,7 +237,7 @@
 			bindEvent(dialog);
 			bindDrag(dialog);
 			load(dialog, options);
-			
+
 			// 如果是模态窗口，需要创建遮挡层
 			if (options[ 'modal' ])
 				createMask();
@@ -243,17 +249,20 @@
 			return dialog;
 		},
 		// 根据id关闭指定dialog
-		close: function(id) {
+		close: function(id, c) {
 			var dialog = $("#" + id);
 			if(dialog[0]) {
 				var options = $.data(dialog[0], "dialog");
-				
+
 				// 关闭dialog
 				if(options['showType'])
-					hide[options['showType']](dialog);
-				else
+					hide[options['showType']](dialog, c||options['onClose']);
+				else {
 					dialog.remove();
-				
+					var f = c||options['onClose'];
+					if(f) f();
+				}
+
 				// 如果是模态窗口，还需要把mask层关掉
 				if ($(".dialog-mask")[0])
 					$(".dialog-mask").remove();
