@@ -10,7 +10,8 @@
 			width: 600,
 			height: 400,
 			title: '使用url加载数据',
-			modal: true
+			modal: true, // true|false
+			showType: 'slide' // slide|fade
 		});
 	}
 	function openContentDialog() {
@@ -18,8 +19,9 @@
 			id: 'dialog2',
 			content: '我是使用content配置的对话框内容',
 			width: 900,
-			height: 600,
-			title: '使用content加载数据'
+			height: 500,
+			title: '使用content加载数据',
+			showType: 'fade'
 		});
 	}
 </script>
@@ -33,7 +35,8 @@ function openUrlDialog() {
 		width: 600,
 		height: 400,
 		title: '使用url加载数据',
-		modal: true
+		modal: true, // true|false
+		showType: 'slide' // slide|fade
 	});
 }
 </pre>
@@ -47,7 +50,8 @@ function openContentDialog() {
 		content: '我是使用content配置的对话框内容',
 		width: 900,
 		height: 600,
-		title: '使用content加载数据'
+		title: '使用content加载数据',
+		showType: 'fade'
 	});
 }
 </pre>

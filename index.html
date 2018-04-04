@@ -97,6 +97,7 @@
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '异步分页表格插件手册', 'id': 'tab12', 'url': 'doc/datatable_doc.html', 'method': 'get'});">异步分页表格插件手册</a></li>
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '异步分页表格插件示例', 'id': 'tab11', 'url': 'demo/datatable_demo.html', 'method': 'get'});">异步分页表格插件示例</a></li>
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '对话框插件示例', 'id': 'tab14', 'url': 'demo/dialog_demo.html', 'method': 'get'});">对话框插件示例</a></li>
+							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '消息框插件示例', 'id': 'tab15', 'url': 'demo/messager_demo.html', 'method': 'get'});">消息框插件示例</a></li>
 							<li><a href="javascript:;" onclick="$('.tab').tab('addRemoteTab', {'title': '页面风格替换', 'id': 'tab13', 'url': 'doc/theme_doc.html', 'method': 'get'});">页面风格替换</a></li>
 							<li><a href="javascript:;">Jsonp（jQuery版本）</a></li>
 							<li><a href="javascript:;">Jsonp（Javascript版本）</a></li>
@@ -142,61 +143,6 @@
 				<span>jQuery插件开发学习与实战</span>
 			</div>
 		</div>
-		
-		<script type="text/javascript">
-			/* $.messager.alert({
-				title: '信息',
-				width: 250,
-				height: 170,
-				content: '请填写执行情况(200字以内)',
-				level: 'warning', // info|question|warning|error
-				btn: '知道了',
-				time: 1000,
-				showType: 'fade'
-			}); */
-			
-			// confirm
-			$.messager.confirm({
-				title: '信息',
-				width: 250,
-				height: 170,
-				content: '您确定删除员工“徐国峰”吗？',
-				btn: [ 
-				       { text: '确定', callback: function() { console.log("删除了") } }, 
-				       { text: '取消', callback: function() { console.log("不删除") } }
-				],
-				showType: 'fade'
-			});
-		</script>
-		
-		
-		
-		
-		
-		<!-- <div id="dialog3" class="dialog-container" style="width: 250px; height: 170px; top: 90px; left: 826.5px; display: block; z-index: 1102;">
-			<div class="dialog-header" style="cursor: default;">
-				<div class="dialog-title">信息</div>
-				<div class="dialog-close"></div>
-			</div>
-			<div class="dialog-content" style="width: 218px; height: 113px; ">
-			
-					<div class="message-content">
-						<span class="message-info-icon message-icon"></span>
-						<span>您确定删除员工“徐国峰”吗？</span>
-					</div>
-					<div class="message-button-container">
-						<button class="default-button">确 定</button>
-						<button class="default-button" style="margin-left: 10px">取消</button>
-					</div>
-				
-				
-			</div>
-		</div> -->
-		
-		
-		
-		
-		
 	</body>
 </html>
 <!-- css样式美化 下拉框 select 样式 -->

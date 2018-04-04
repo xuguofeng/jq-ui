@@ -31,6 +31,7 @@
 	}
 
 	$.messager = {
+
 		alert: function(options) {
 			// 默认配置
 			var defaultSettings = {
@@ -38,8 +39,9 @@
 				width: 250,
 				height: 170,
 				content: '页面出现错误。',
-				level: 'warning', // info|question|warning|error
+				level: 'warning', // success|info|question|warning|error
 				btn: '确定',
+				modal: true,
 				time: 0,
 				showType: '' // slide|fade
 			};
@@ -59,18 +61,15 @@
 			// 把按钮添加到按钮容器
 			messageButtonContainer.append(createButton(options[ 'btn' ], null));
 
-			// 创建dialog
-			var alertDialog = $.dialog.create({
-				title: '信息',
-				width: 250,
-				height: 170,
-				modal: true,
+			// 创建并显示dialog
+			var alertDialog = $.dialog.open({
+				title: options['title'],
+				width: options['width'],
+				height: options['height'],
+				html: [ messageContent, messageButtonContainer ],
+				modal: options['modal'],
 				showType: options[ 'showType' ]
 			});
-			// 把alert的组件插入到dialog中，显示dialog
-			alertDialog
-				.find("div.dialog-content").append(messageContent).append(messageButtonContainer).end()
-				.css({"display": "block", "z-index": ++window[ 'zIndex' ]}).appendTo($("body"));
 
 			// 定时关闭
 			setTimer(alertDialog, options[ 'time' ]);
@@ -83,6 +82,7 @@
 				width: 250,
 				height: 170,
 				content: '请确认？',
+				modal: true,
 				btn: [ 
 				       { text: '确定', callback: function() {} }, 
 				       { text: '取消', callback: function() {} }
@@ -106,31 +106,49 @@
 				var b = options['btn'][i];
 				messageButtonContainer.append(createButton(b[ 'text' ], b[ 'callback' ]));
 			}
-			// 创建dialog
-			var alertDialog = $.dialog.create({
-				title: '信息',
-				width: 250,
-				height: 170,
-				modal: true,
+			// 创建并显示dialog
+			$.dialog.open({
+				title: options['title'],
+				width: options['width'],
+				height: options['height'],
+				html: [ messageContent, messageButtonContainer ],
+				modal: options['modal'],
 				showType: options[ 'showType' ]
 			});
-			// 把alert的组件插入到dialog中，显示dialog
-			alertDialog
-				.find("div.dialog-content").append(messageContent).append(messageButtonContainer).end()
-				.css({"display": "block", "z-index": ++window[ 'zIndex' ]}).appendTo($("body"));
 		},
 		
-		message: function() {
+		message: function(options) {
 			
 			var defaultSettings = {
 				title: '信息',
 				width: 250,
-				height: 170,
+				height: 120,
 				content: '操作成功。',
+				modal: false,
 				time: 0,
 				showType: '' // slide|fade
 			};
 			
+			// 合并默认配置和用户配置参数
+			var options = $.extend(defaultSettings, options);
+
+			// 消息内容
+			var messageContent = $("<div></div>")
+					.addClass("message-content").css("text-align", "center")
+					.append($("<span>" + options[ 'content' ] + "</span>"));
+
+			// 创建并显示dialog
+			var msgDialog = $.dialog.open({
+				title: options['title'],
+				width: options['width'],
+				height: options['height'],
+				html: [ messageContent ],
+				modal: options['modal'],
+				showType: options[ 'showType' ]
+			});
+
+			// 定时关闭
+			setTimer(msgDialog, options[ 'time' ]);
 		}
 	};
 	

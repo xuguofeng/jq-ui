@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+<title>jQuery插件开发学习之消息对话框</title>
+<script>
+	function openAlert() {
+		$.messager.alert({
+			title: '信息',
+			content: '请填写执行情况(200字以内)',
+			level: 'warning', // success|info|question|warning|error
+			btn: '知道了',
+			time: 1000,
+			showType: 'slide' // slide|fade
+		});
+	}
+	function openConfirm() {
+		$.messager.confirm({
+			title: '信息',
+			content: '您确定删除员工“徐国峰”吗？',
+			btn: [ 
+			       { text: '确定', callback: function() { alert("删除了"); } }, 
+			       { text: '取消', callback: function() { alert("不删除"); } }
+			],
+			showType: 'fade'
+		});
+	}
+	function openMessage() {
+		$.messager.message({
+			title: '信息',
+			content: '员工数据删除成功。',
+			showType: 'fade',
+			time: 2000
+		});
+	}
+</script>
+<button class="default-button" onclick="openAlert();">alert</button>
+<br />
+<pre class="code">
+function openAlert() {
+	$.messager.alert({
+		title: '信息',
+		content: '请填写执行情况(200字以内)',
+		level: 'warning', // success|info|question|warning|error
+		btn: '知道了',
+		time: 1000,
+		showType: 'slide' // slide|fade
+	});
+}
+</pre>
+<br /><hr /><br />
+<button class="default-button" onclick="openConfirm();">confirm</button>
+<br />
+<pre class="code">
+function openConfirm() {
+	$.messager.confirm({
+		title: '信息',
+		content: '您确定删除员工“徐国峰”吗？',
+		btn: [ 
+		       { text: '确定', callback: function() { alert("删除了"); } }, 
+		       { text: '取消', callback: function() { alert("不删除"); } }
+		],
+		showType: 'fade'
+	});
+}
+</pre>
+<br /><hr /><br />
+<button class="default-button" onclick="openMessage();">message</button>
+<br />
+<pre class="code">
+function openMessage() {
+	$.messager.message({
+		title: '信息',
+		content: '员工数据删除成功。',
+		showType: 'fade',
+		time: 2000
+	});
+}
+</pre>
+<br /><br />

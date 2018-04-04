@@ -14,6 +14,10 @@
 	background: url(../../img/icon/messager_icons.png) no-repeat -64px 0px;
 }
 
+.message-success-icon {
+	background: url(../../img/icon/success_icon.png) no-repeat 0px 0px;
+}
+
 .message-icon {
 	float: left;
 	display: block;

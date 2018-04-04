@@ -1,5 +1,5 @@
 (function($) {
-	
+
 	// dialog的z-index样式，随着dialog的增加而增加
 	window[ 'zIndex' ] = 1100;
 
@@ -115,6 +115,14 @@
 			dialog.find("div.dialog-content").html(content);
 			return;
 		}
+		// 使用jquery对象填充内容
+		var html = options["html"];
+		if(html) {
+			for(var i = 0; i < html.length; i++) {
+				dialog.find("div.dialog-content").append(html[i]);
+			}
+			return;
+		}
 		// 使用url进行远程获取
 		var url = options["url"];
 		if(url)
@@ -147,6 +155,7 @@
 		return $("<div class='dialog-mask'></div>").css("z-index", ++window[ 'zIndex' ]).appendTo($("body"));
 	}
 
+	// 对话框显示和隐藏的动画效果
 	var show = {
 		slide: function(dialog) {
 			dialog.slideDown("200");
@@ -175,12 +184,14 @@
 			var dialog = this.create(options);
 
 			// 把对话框追加到body末尾
-			dialog.css({"z-index": ++window[ 'zIndex' ]}).appendTo($("body"));
+			dialog.css({"z-index": ++window[ 'zIndex' ], "display": "none"}).appendTo($("body"));
 			// 显示dialog
 			if(options['showType'])
 				show[options['showType']](dialog);
 			else
 				dialog.css("display", "block");
+
+			return dialog;
 		},
 		create: function(options) {
 			// 默认配置
@@ -192,6 +203,7 @@
 				modal: false,
 				url: '',
 				content: '',
+				html: undefined,// [ jquery1, jquery2, ...... ],
 				showType: '' // slide|fade
 			};
 			// 合并默认配置和用户配置参数
