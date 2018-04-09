@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div class="api-desc">
+	<h3>
+		1. 同域AJAX
+	</h3>
+	<p>
+		使用 eclipse + tomcat 开发
+	</p>
+	<p>
+		模仿获取手机号码归属地接口，有以下主要组件：
+	</p>
+	<p>
+		1）TestJsonpServlet.java类返回一个封装号码信息的json数据，访问地址为：http://localhost:8080/JsonpServer/testJsonp.do
+	</p>
+	<p>
+		2）index.html文件，使用ajax访问后台获取号码信息后展示在页面上面
+	</p>
+	<p>
+		<img src="img/doc/jsonp_1.jpg">
+	</p>
+	<p>
+		项目结构如下：
+	</p>
+	<p>
+		<img src="img/doc/jsonp_2.jpg">
+	</p>
+	<br />
+	<hr />
+	<br />
+	<h3>
+		2. 跨域  AJAX 失败
+	</h3>
+	<p>
+		使用 hbuilder 开发环境，jquery 库和 index.html 可以复制前面示例中的文件
+	</p>
+	<p>
+		项目结构如下：
+	</p>
+	<p>
+		<img src="img/doc/jsonp_3.jpg">
+	</p>
+	<p>
+		访问http://localhost:8020/AjaxJsonp/index.html页面，点击查询控制台出错：
+	</p>
+	<p style="color: red">
+		Failed to load http://localhost:8080/JsonpServer/testJsonp.do: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8020' is therefore not allowed access.
+	</p>
+	<p>
+		<img src="img/doc/jsonp_4.jpg">
+	</p>
+	<p>
+		这就是浏览器对跨域 ajax 请求的限制
+	</p>
+	<br />
+	<hr />
+	<br />
+	<h3>
+		3. script 标签的 src 属性可以跨域
+	</h3>
+	<p>
+		我们经常使用 CDN 服务器上面的 js 或者 css 文件，所以 script 标签的 src 属性是可以跨域的
+	</p>
+	<br />
+	<p style="font-weight: bold">
+		示例1：
+	</p>
+	<p>
+		修改 localhost:8020 的 index.html 文件，加一个 script 标签，去获取 localhost:8080 的一个 js 脚本，地址为 http://localhost:8080/JsonpServer/script.jsp
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="http://localhost:8080/JsonpServer/script.jsp"&gt;&lt;/script&gt;</pre>
+
+	<p>
+		http://localhost:8080/JsonpServer/script.jsp 返回一个 alert("我是跨域的js脚本") 内容
+	</p>
+	<p>
+		<img src="img/doc/jsonp_5_1.jpg">
+	</p>
+	<p>
+		访问 http://localhost:8020/AjaxJsonp/index.html 页面，可以看到弹出了 “我是跨域的js脚本”
+	</p>
+	<p>
+		<img src="img/doc/jsonp_5.jpg">
+	</p>
+
+	<br />
+	<p style="font-weight: bold">
+		示例2：
+	</p>
+	<p>
+		在 localhost:8020 的 index.html 文件全部 script 标签之前再加一个 script 标签，这个里面定义一个函数
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript"&gt;
+	function fn(data) {
+		alert(data);
+	}
+&lt;/script&gt;</pre>
+
+	<p>
+		<img src="img/doc/jsonp_6.jpg">
+	</p>
+	<p>
+		localhost:8080 的 script.jsp 内容修改为返回一个 fn("我是跨域的js脚本，调用fn函数") 内容
+	</p>
+	<p>
+		<img src="img/doc/jsonp_7.jpg">
+	</p>
+
+	<p>
+		访问 http://localhost:8020/AjaxJsonp/index.html 页面，可以看到弹出了“我是跨域的js脚本，调用fn函数”
+	</p>
+	<p>
+		<img src="img/doc/jsonp_8.jpg">
+	</p>
+	<br />
+	<p style="font-weight: bold">
+		示例3：
+	</p>
+	<p>
+		现在 localhost:8020 的 index.html 文件的 script 标签是固定写在那里的，如果我们使用按钮触发一个函数，函数里面动态地生成一个 script 插入到 head 中，是不是可以让效果更好
+	</p>
+	<p>
+		把示例1在 localhost:8020 的 index.html 文件加入的 script 标签的 src 删除掉，再添加 jsonp() 函数动态向 head 插入 script
+	</p>
+	<p>
+		<img src="img/doc/jsonp_9.jpg">
+	</p>
+
+	<p>
+		按钮点击弹出 “我是跨域的js脚本，调用fn函数”
+	</p>
+	<p>
+		<img src="img/doc/jsonp_10.jpg">
+	</p>
+
+	<br />
+	<hr />
+	<br />
+	<h3>
+		4. 开发通用的 jsonp 函数
+	</h3>
+	<p>
+		通过 3 中的几个例子，我们可以知道：
+	</p>
+	<p>
+		1）js中可以动态地向head插入script标签，并且src属性可以是跨域的地址
+	</p>
+	<p>
+		2）这个src地址可以返回一个“本地函数调用”，把需要处理的数据当做参数传递给这个函数
+	</p>
+	<p>
+		3）本地函数需要预先加载到内存
+	</p>
+	<br />
+	<p>
+		下面我们就可以在 localhost:8020 中开发一个 javascript 版本的通用 jsonp 访问函数
+	</p>
+
+	<pre class="code">
+/**
+ * 跨域的 jsonp 请求函数
+ * 
+ * url - 地址
+ * funcNameArg - 目标服务器用于获取回调函数名的请求参数名
+ * callBack - 回调函数
+ */
+function jsonp(url, funcNameArg, callBack) {
+	
+	// 生成一个随机的函数名
+	var rnd = "";
+	for(var i = 0; i &lt; 10; i++)
+		rnd += Math.floor(Math.random() * 10);
+
+	rnd += "_" + (new Date()).getTime();
+
+	var funcName = "jsonp_" + rnd;
+
+	// 把回调函数注册到window上面
+	window[ funcName ] = callBack;
+
+	// 创建script节点
+	var script = document.createElement("script");
+	script.setAttribute("type", "text/javascript");
+
+	if(url.indexOf("?") == -1)
+		script.setAttribute("src", url + "?" + funcNameArg + "=" + funcName);
+	else
+		script.setAttribute("src", url + "&" + funcNameArg + "=" + funcName);
+
+	// 把script节点添加到head上面
+	var head = document.getElementsByTagName("head")[0];
+
+	head.appendChild(script);
+
+	// 把script节点移除
+	head.removeChild(script);
+}</pre>
+
+	<p>
+		修改查询按钮的点击事件函数
+	</p>
+	<pre class="code">
+var reg = /^1\d{10}$/;
+
+function getPhoneInfo() {
+	var phone = document.getElementById("phone").value.trim();
+	if(!reg.test(phone)) {
+		alert("请输入手机号码");
+		return;
+	}
+
+	// 调用jsonp函数进行跨域请求获取手机归属地信息
+	jsonp(
+		"http://localhost:8080/JsonpServer/testJsonp.do?phone=" + phone, 
+		"callback", 
+		function(data) {
+			var phone = "phone = " + data.phone;
+			var country = "country = " + data.country;
+			var province = "province = " + data.province;
+			var city = "city = " + data.city;
+			document.getElementById("info").innerHTML = 
+							phone + "&lt;br /&gt;" + 
+							country + "&lt;br /&gt;" + 
+							province + "&lt;br /&gt;" + 
+							city + "&lt;br /&gt;";
+		}
+	);
+}</pre>
+
+	<p>
+		修改localhost:8080的servlet代码，让其可以处理兼容jsonp请求
+	</p>
+	<pre class="code">
+// 兼容JSONP请求
+String callback = request.getParameter("callback");
+
+if (callback == null)
+	response.getWriter().print(json);
+else
+	response.getWriter().print(callback + "(" + json + ");");</pre>
+
+	<p>然后，我们就可以在 localhost:8020 上面跨域访问 localhost:8080 的服务了。服务端返回了一个 jsonp_6316231340_1523246571704（函数名是 jsonp 函数动态生成后传递给服务器的）函数调用</p>
+
+	<p>
+		<img src="img/doc/jsonp_11.jpg">
+	</p>
+	
+	<br />
+	<hr />
+	<br />
+	<h3>
+		5. jquery 的 jsonp 请求
+	</h3>
+	<br />
+	<pre class="code">
+&lt;script type="text/javascript"&gt;
+
+	var reg = /^1\d{10}$/;
+
+	function getPhoneInfo() {
+		var phone = document.getElementById("phone").value.trim();
+		if(!reg.test(phone)) {
+			alert("请输入手机号码");
+			return;
+		}
+		
+		// http://localhost:8080/JsonpServer/testJsonp.do?phone=
+
+		$.ajax({
+			type:"get",
+			url:"http://localhost:8080/JsonpServer/testJsonp.do?phone=" + phone,
+			dataType: "jsonp",
+			jsonp: "callback",
+			success: function(data) {
+				var phone = "phone = " + data.phone;
+				var country = "country = " + data.country;
+				var province = "province = " + data.province;
+				var city = "city = " + data.city;
+				document.getElementById("info").innerHTML = 
+								phone + "&lt;br /&gt;" + 
+								country + "&lt;br /&gt;" + 
+								province + "&lt;br /&gt;" + 
+								city + "&lt;br /&gt;";
+				}
+		});
+	}
+&lt;/script&gt;</pre>
+
+	<br />
+	<hr />
+	<br />
+	<h3>
+		6. 示例代码下载
+	</h3>
+	<p>
+		<a target="_blank" href="attachment/jsonp_src.zip">点击下载</a>
+	</p>
+
+	<br />
+	<br />
+
+</div>
+</body>
+</html>
