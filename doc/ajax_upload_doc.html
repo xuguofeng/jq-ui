@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div class="api-desc">
+	<h3>
+		1. 使用
+	</h3>
+	<p>
+		引入 ajax_upload.js
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/ajax_upload/ajax_upload.js"&gt;&lt;/script&gt;</pre>
+
+	<br />
+	<p>
+		为 form 添加 id 属性
+	</p>
+	<pre class="code">
+&lt;form id="upload_form" action="upload.jsp" method="post" enctype="multipart/form-data"&gt;
+	&lt;input id="upload_file" type="file" name="file1" placeholder="请选择文件"&gt;
+	&lt;br /&gt;&lt;br /&gt;
+	&lt;input type="button" value="上传" onclick="upload()"&gt;
+&lt;/form&gt;</pre>
+
+	<br />
+	<p>
+		在点击按钮时调用 AjaxUpload 函数，传入 form 的 id 值、回调函数
+	</p>
+	<p>
+		js 代码
+	</p>
+	<pre class="code">
+function upload() {
+	if(!document.getElementById("upload_file").value) {
+		alert("请选择文件。");
+		return;
+	}
+	// 执行异步上传的函数
+	ajax_upload("upload_form", function(data) {
+		var json = eval("(" + data + ")");
+		if(json["error"] == "0") {
+			alert("上传成功。");
+		}
+	});
+}</pre>
+
+	<br />
+	<p>
+		服务器端返回的信息可以是任何类型，只要自定义的回调函数可以处理即可
+	</p>
+
+	<br />
+	<hr />
+	<br />
+	<h3>
+		2. 原理
+	</h3>
+	<p>
+		如果我们让 form 的 target 属性指向某个隐藏的 iframe，在提交表单时，响应信息会在 iframe 框架进行显示，而“外面”的页面不会刷新，从而达到“无刷新异步”上传的效果
+	</p>
+	<p>
+		插件函数分为以下几步：
+	</p>
+	<p>
+		1）随机生成一个字符串，用作 iframe 的 id 和 name 属性值
+	</p>
+	<p>
+		2）动态创建一个 iframe，设置 id 和 name 属性值，应该是隐藏的
+	</p>
+	<p>
+		3）根据 id 获取到 form，为它设置 target 属性值
+	</p>
+	<p>
+		4）提交表单
+	</p>
+	<p>
+		5）在 iframe 的 onload 函数里面调用回调函数，把响应作为其参数，然后移除 iframe，移除 form 的 target 属性
+	</p>
+	<p>
+		代码
+	</p>
+	<pre class="code">
+/**
+ * 使用纯js异步上传
+ * 
+ * form_id - 需要提交的form的id
+ * callback - 回调函数
+ */
+function ajax_upload(form_id, callback) {
+
+	// 首先创建一个iframe类似下面的形式
+	// &lt;iframe name="AjaxFrame_5257748104_1522576813565" id="AjaxFrame_5257748104_1522576813565" width="1" height="1" style="display: none;"&gt;&lt;/iframe&gt;
+	var iframeName = "AjaxFrame_";
+	for(var i = 0; i &lt; 10; i++)
+		iframeName += Math.floor(Math.random() * 10);
+
+	iframeName += "_" + (new Date()).getTime();
+	var iframe = document.createElement("iframe");
+
+	iframe.setAttribute("name", iframeName);
+	iframe.setAttribute("id", iframeName);
+	iframe.setAttribute("width", 1);
+	iframe.setAttribute("height", 1);
+
+	iframe.style.display = "none";
+
+	// 获取body
+	var body = document.getElementsByTagName("body")[0];
+
+	// 把iframe插入到body中
+	body.appendChild(iframe);
+
+
+	// 获取form
+	var form = document.getElementById(form_id);
+	// 设置target属性
+	form.setAttribute("target", iframeName);
+	// 提交表单
+	form.submit();
+
+	// 执行回调函数
+	iframe.onload = function() {
+		var resp = window.frames[ iframeName ].document.body.innerHTML;
+		callback(resp);
+		// 删除iframe
+		body.removeChild(this);
+		// 移除form的target属性
+		form.removeAttribute("target");
+	}
+}</pre>
+
+	<br />
+	<hr />
+	<br />
+	<h3>
+		3. 示例代码
+	</h3>
+	<p>
+		<a target="_blank" href="attachment/AjaxUpload.zip">点击下载</a>
+	</p>
+
+	<br />
+	<br />
+	
+
+</div>
+</body>
+</html>
