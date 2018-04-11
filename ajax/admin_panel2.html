@@ -1,51 +1,10 @@
 <script>
-// 页面加载后刷新时间戳
-$(function() {
-	document.getElementById("timestamp").innerHTML = "对话框真的刷新啦 :) " + new Date().getTime();
-});
-
-// 全选
-function checkAll() {
-	var checks = document.getElementsByClassName("user-check");
-	for (var i = 0; i < checks.length; i++) {
-		var check = checks[i];
-		check.checked = true;
-	}
-}
-// 取消
-function cancelAll() {
-	var checks = document.getElementsByClassName("user-check");
-	for (var i = 0; i < checks.length; i++) {
-		var check = checks[i];
-		check.checked = false;
-	}
-}
-// 反选
-function reverseAll() {
-	var checks = document.getElementsByClassName("user-check");
-	for (var i = 0; i < checks.length; i++) {
-		var check = checks[i];
-		if (check.checked)
-			check.checked = false;
-		else
-			check.checked = true;
-	}
-}
 // 刷新对话框
-function refresh() {
-	$.dialog.reload("dialog1");
-}
-// 关闭对话框
-function closeDialog() {
-	$.dialog.close("dialog1");
+function refresh2() {
+	$("#panel2").panel("reload");
 }
 </script>
-<span id="timestamp"></span><br />
-<button class="default-button" onclick="checkAll();">全选</button>
-<button class="default-button" onclick="cancelAll();">取消</button>
-<button class="default-button" onclick="reverseAll();">反选</button>
-<button class="default-button" onclick="refresh();">刷新</button>
-<button class="default-button" onclick="closeDialog();">关闭</button>
+<button class="default-button" onclick="refresh2();">刷新</button>
 <table cellpadding="0" cellspacing="0" class="list" style="width: 100%">
 	<thead>
 		<tr>

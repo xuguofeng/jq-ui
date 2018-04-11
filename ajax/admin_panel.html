@@ -1,7 +1,7 @@
 <script>
 // 页面加载后刷新时间戳
 $(function() {
-	document.getElementById("timestamp").innerHTML = "对话框真的刷新啦 :) " + new Date().getTime();
+	document.getElementById("timestamp").innerHTML = "面板真的刷新啦 :) " + new Date().getTime();
 });
 
 // 全选
@@ -33,11 +33,7 @@ function reverseAll() {
 }
 // 刷新对话框
 function refresh() {
-	$.dialog.reload("dialog1");
-}
-// 关闭对话框
-function closeDialog() {
-	$.dialog.close("dialog1");
+	$("#panel1").panel("reload");
 }
 </script>
 <span id="timestamp"></span><br />
@@ -45,7 +41,6 @@ function closeDialog() {
 <button class="default-button" onclick="cancelAll();">取消</button>
 <button class="default-button" onclick="reverseAll();">反选</button>
 <button class="default-button" onclick="refresh();">刷新</button>
-<button class="default-button" onclick="closeDialog();">关闭</button>
 <table cellpadding="0" cellspacing="0" class="list" style="width: 100%">
 	<thead>
 		<tr>
