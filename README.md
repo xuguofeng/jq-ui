@@ -268,7 +268,15 @@ $.messager.alert({
 
 
 
-## 9. Demo项目说明
+## 9. 其他插件
+<br />
+[panel插件示例](http://5ijy01.duapp.com/jq-ui/index.html?tab=panel_demo)
+<br />
+[panel插件手册](http://5ijy01.duapp.com/jq-ui/index.html?tab=panel_doc)
+
+
+
+## 10. Demo项目说明
 ajax目录：保存ajax请求响应文件 <br/>
 css目录：  保存插件css样式文件 <br/>
 demo目录：保存示例html和css样式文件，这个目录下的html不可以直接访问，只能通过首页的手风琴链接查看 <br/>
@@ -277,10 +285,7 @@ img目录：  保存插件和示例图片 <br/>
 js目录：    保存jquery库、插件库 <br/> <br/>
 
 index.html文件是demo项目的入口 <br/>
-
-
-
-## 10. 说明
+ <br/> <br/>
 我是一个jQuery插件开发的初学者，现在是一边学习一边开发，代码难免有一些不足之处，您在使用插件时还是需要进行详细测试。 <br/>
 如果您有需求优化、代码优化、BUG修复上的建议，您可以通过QQ联系我：947805384  <br/>
 

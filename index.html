@@ -65,7 +65,27 @@
 
 				// tab选项卡
 				$("#tab1").tab();
+
+				// 根据参数打开指定的tab
+				var theRequest = getParameters();
+				var tab = theRequest["tab"];
+				if(tab && $("a[tab-id='" + tab + "']")[0]) {
+					var $a = $("a[tab-id='" + tab + "']");
+					$a.trigger("click");
+				}
 			});
+			function getParameters() {
+				var url = location.search;
+				var theRequest = new Object();
+				if (url.indexOf("?") != -1) {
+					var str = url.substr(1);
+					strs = str.split("&");
+					for(var i = 0; i < strs.length; i++) {
+						theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+					}
+				}
+				return theRequest;
+			}
 		</script>
 	</head>
 	<body>
@@ -91,28 +111,24 @@
 					<li accordion-id="menu1" class="active">UI插件使用</li>
 					<li>
 						<ul>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '选项卡插件手册', 'id': 'tab1', 'url': 'doc/tab_doc.html', 'method': 'get'});">选项卡插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '手风琴插件手册', 'id': 'tab2', 'url': 'doc/accordion_doc.html', 'method': 'get'});">手风琴插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '分页插件手册', 'id': 'tab6', 'url': 'doc/pagination_doc.html', 'method': 'get'});">分页插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '分页插件示例', 'id': 'tab7', 'url': 'demo/pagination_demo.html', 'method': 'get'});">分页插件示例</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '分页表格示例（jsp+分页插件）', 'id': 'tab10', 'url': 'ajax/admin_list.jsp?pageNum=1&pageSize=10', 'method': 'get'});">分页表格示例（jsp+分页插件）</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '轮播图插件手册', 'id': 'tab8', 'url': 'doc/slider_doc.html', 'method': 'get'});">轮播图插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '轮播图插件示例', 'id': 'tab9', 'url': 'demo/slider_demo.html', 'method': 'get'});">轮播图插件示例</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '异步分页表格插件手册', 'id': 'tab12', 'url': 'doc/datatable_doc.html', 'method': 'get'});">异步分页表格插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '异步分页表格插件示例', 'id': 'tab11', 'url': 'demo/datatable_demo.html', 'method': 'get'});">异步分页表格插件示例</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '对话框插件手册', 'id': 'tab16', 'url': 'doc/dialog_doc.html', 'method': 'get'});">对话框插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '对话框插件示例', 'id': 'tab14', 'url': 'demo/dialog_demo.html', 'method': 'get'});">对话框插件示例</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '消息框插件手册', 'id': 'tab17', 'url': 'doc/messager_doc.html', 'method': 'get'});">消息框插件手册</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '消息框插件示例', 'id': 'tab15', 'url': 'demo/messager_demo.html', 'method': 'get'});">消息框插件示例</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '面板插件示例', 'id': 'panel_demo', 'url': 'demo/panel_demo.html', 'method': 'get'});">面板插件示例</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '页面风格替换', 'id': 'tab13', 'url': 'doc/theme_doc.html', 'method': 'get'});">页面风格替换</a></li>
-						</ul>
-					</li>
-					<li accordion-id="menu2">工具插件</li>
-					<li>
-						<ul>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': 'Jsonp插件', 'id': 'jsonp_doc', 'url': 'doc/jsonp_doc.html'});">Jsonp插件</a></li>
-							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': 'AjaxUpload插件', 'id': 'ajax_upload_doc', 'url': 'doc/ajax_upload_doc.html'});">AjaxUpload插件</a></li>
+							<li><a tab-id="tab1" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '选项卡插件手册', 'id': 'tab1', 'url': 'doc/tab_doc.html', 'method': 'get'});">选项卡插件手册</a></li>
+							<li><a tab-id="tab2" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '手风琴插件手册', 'id': 'tab2', 'url': 'doc/accordion_doc.html', 'method': 'get'});">手风琴插件手册</a></li>
+							<li><a tab-id="tab6" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '分页插件手册', 'id': 'tab6', 'url': 'doc/pagination_doc.html', 'method': 'get'});">分页插件手册</a></li>
+							<li><a tab-id="tab7" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '分页插件示例', 'id': 'tab7', 'url': 'demo/pagination_demo.html', 'method': 'get'});">分页插件示例</a></li>
+							<li><a tab-id="tab10" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '分页表格示例（jsp+分页插件）', 'id': 'tab10', 'url': 'ajax/admin_list.jsp?pageNum=1&pageSize=10', 'method': 'get'});">分页表格示例（jsp+分页插件）</a></li>
+							<li><a tab-id="tab8" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '轮播图插件手册', 'id': 'tab8', 'url': 'doc/slider_doc.html', 'method': 'get'});">轮播图插件手册</a></li>
+							<li><a tab-id="tab9" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '轮播图插件示例', 'id': 'tab9', 'url': 'demo/slider_demo.html', 'method': 'get'});">轮播图插件示例</a></li>
+							<li><a tab-id="tab12" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '异步分页表格插件手册', 'id': 'tab12', 'url': 'doc/datatable_doc.html', 'method': 'get'});">异步分页表格插件手册</a></li>
+							<li><a tab-id="tab11" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '异步分页表格插件示例', 'id': 'tab11', 'url': 'demo/datatable_demo.html', 'method': 'get'});">异步分页表格插件示例</a></li>
+							<li><a tab-id="tab16" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '对话框插件手册', 'id': 'tab16', 'url': 'doc/dialog_doc.html', 'method': 'get'});">对话框插件手册</a></li>
+							<li><a tab-id="tab14" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '对话框插件示例', 'id': 'tab14', 'url': 'demo/dialog_demo.html', 'method': 'get'});">对话框插件示例</a></li>
+							<li><a tab-id="tab17" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '消息框插件手册', 'id': 'tab17', 'url': 'doc/messager_doc.html', 'method': 'get'});">消息框插件手册</a></li>
+							<li><a tab-id="tab15" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '消息框插件示例', 'id': 'tab15', 'url': 'demo/messager_demo.html', 'method': 'get'});">消息框插件示例</a></li>
+							<li><a tab-id="panel_demo" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '面板插件示例', 'id': 'panel_demo', 'url': 'demo/panel_demo.html', 'method': 'get'});">面板插件示例</a></li>
+							<li><a tab-id="panel_doc" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '面板插件手册', 'id': 'panel_doc', 'url': 'doc/panel_doc.html', 'method': 'get'});">面板插件手册</a></li>
+							<li><a tab-id="tab13" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '页面风格替换', 'id': 'tab13', 'url': 'doc/theme_doc.html', 'method': 'get'});">页面风格替换</a></li>
+							<li><a tab-id="jsonp_doc" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': 'Jsonp插件', 'id': 'jsonp_doc', 'url': 'doc/jsonp_doc.html'});">Jsonp插件</a></li>
+							<li><a tab-id="ajax_upload_doc" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': 'AjaxUpload插件', 'id': 'ajax_upload_doc', 'url': 'doc/ajax_upload_doc.html'});">AjaxUpload插件</a></li>
 						</ul>
 					</li>
 					<li accordion-id="menu3">管理员管理</li>

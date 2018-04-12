@@ -106,12 +106,6 @@
 		var options = $.extend(defaults, options);
 
 		return this.each(function() {
-			/*
-		    1）判断title是否配置，如果有，就创建header对象，然后插入到面板div的最前部，使用prepend函数
-			2）判断width是否配置，如果有，就给面板div设置width样式
-			3）判断height是否配置，如果有，就给面板div设置height样式
-			4）判断url是否配置，如果有，就使用这个url获取数据，然后覆盖原来的内容
-			 * */
 
 			var $panel = $(this);
 

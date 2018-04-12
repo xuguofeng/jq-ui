@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div class="api-desc">
+	<p>
+		首先引入jquery库，然后引入panel.js、panel.css，如下：
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="js/panel.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/blue/panel.css"/&gt;</pre>
+
+	<p>
+		在页面加载完成后初始化panel插件
+	</p>
+	<pre class="code">
+&lt;script&gt;
+	$("#panel1").panel({
+		title: "第一个panel面板",
+		width: "50%",
+		height: "80%",
+		url: "ajax/admin_panel.html"
+	});
+&lt;/script&gt;</pre>
+
+	<p>
+		页面代码
+	</p>
+	<pre class="code">
+&lt;div id="panel1"&gt;&lt;/div&gt;
+&lt;br /&gt;</pre>
+
+	<p>
+		panel插件有以下初始化选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>width</td>
+				<td>int/百分比</td>
+				<td>面板div的宽，默认不设置</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>int</td>
+				<td>面板div的高，默认不设置</td>
+			</tr>
+			<tr>
+				<td>title</td>
+				<td>string</td>
+				<td>如果设置为空串、null或者undefined就不显示</td>
+			</tr>
+			<tr>
+				<td>url</td>
+				<td>string</td>
+				<td>获取数据的远程地址</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		panel插件有以下函数
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>函数名</th>
+				<th>参数</th>
+				<th>功能</th>
+				<th>返回值</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>reload</td>
+				<td>[url]</td>
+				<td>重新加载数据</td>
+				<td>无</td>
+				<td>
+					<pre>
+function refresh() {
+	$("#panel1").panel("reload");
+}</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>options</td>
+				<td>无</td>
+				<td>获取面板的配置信息</td>
+				<td>Object</td>
+				<td>
+					<pre>
+var options = $("#panel").panel("options");</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+</body>
+</html>
