@@ -269,10 +269,10 @@ $.messager.alert({
 
 
 ## 9. 其他插件
-<br />
 [panel插件示例](http://5ijy01.duapp.com/jq-ui/index.html?tab=panel_demo)
 <br />
 [panel插件手册](http://5ijy01.duapp.com/jq-ui/index.html?tab=panel_doc)
+<br />
 
 
 
