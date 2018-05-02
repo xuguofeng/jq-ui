@@ -1,0 +1,41 @@
+<script>
+	$(function() {
+		$("#tree-demo").panel({
+			title: "演示树插件",
+			width: "450",
+			height: "95%"
+		});
+		$("#tree1").tree();
+	});
+</script>
+<div id="tree-demo">
+
+	<div id="tree1">
+		<ul>
+			<li><a href="#">欢迎界面</a></li>
+			<li open>
+				<a href="#">系统管理</a>
+				<ul>
+					<li><a href="#">用户管理</a></li>
+					<li><a href="#">日志查看</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">仓库管理</a>
+				<ul>
+					<li><a href="#">库存管理</a></li>
+					<li><a href="#">收货管理</a></li>
+					<li>
+						<a href="#">发货管理</a>
+						<ul>
+				            <li><a href="#">用户管理</a></li>
+				            <li><a href="#">日志查看</a></li>
+				        </ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+</div>
+<br />
