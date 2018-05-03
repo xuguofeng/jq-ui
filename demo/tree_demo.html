@@ -20,6 +20,10 @@
 		// 初始化树插件
 		$("#tree1").tree();
 		$("#tree2").tree({
+			onClick: function(node) {
+				console.log(node);
+				alert(node.text);
+			},
 			data:	[
 				         {
 				             "id": 1, 
@@ -105,6 +109,7 @@
 			url: "ajax/ajax_tree.jsp",
 			onClick: function(node) {
 				console.log(node);
+				alert(node.text);
 			}
 		});
 	});
