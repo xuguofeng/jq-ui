@@ -1,41 +1,150 @@
 <script>
 	$(function() {
-		$("#tree-demo").panel({
-			title: "演示树插件",
-			width: "450",
+		// 初始化面板
+		$("#tree-demo1").panel({
+			title: "DOM树插件",
+			width: "400",
 			height: "95%"
 		});
+		$("#tree-demo2").panel({
+			title: "JSON树插件",
+			width: "400",
+			height: "95%"
+		});
+		$("#tree-demo3").panel({
+			title: "AJAX_JSON树插件",
+			width: "400",
+			height: "95%"
+		});
+
+		// 初始化树插件
 		$("#tree1").tree();
+		$("#tree2").tree({
+			data:	[
+				         {
+				             "id": 1, 
+				             "text": "菜单"
+				         }, 
+				         {
+				             "children": [
+				                     {
+				                         "id": 3, 
+				                         "text": "用户查看"
+				                     }, 
+				                     {
+				                         "id": 4, 
+				                         "text": "用户添加"
+				                     }, 
+				                     {
+				                         "children": [
+				                                 {
+				                                     "id": 6, 
+				                                     "text": "权限查看"
+				                                 }, 
+				                                 {
+				                                     "id": 7, 
+				                                     "text": "权限添加"
+				                                 }, 
+				                                 {
+				                                     "id": 8, 
+				                                     "text": "分配权限"
+				                                 }
+				                         ], 
+				                         "id": 5, 
+				                         "open": true, 
+				                         "parentId": 2, 
+				                         "text": "权限管理", 
+				                         "type": "folder", 
+				                         "url": ""
+				                     }
+				             ], 
+				             "id": 2, 
+				             "open": true, 
+				             "parentId": 0, 
+				             "text": "用户管理", 
+				             "type": "folder", 
+				             "url": ""
+				         }, 
+				         {
+				             "children": [
+				                     {
+				                         "children": [
+				                                 {
+				                                     "id": 11, 
+				                                     "text": "管理员查看"
+				                                 }, 
+				                                 {
+				                                     "id": 12, 
+				                                     "text": "管理员添加"
+				                                 }
+				                         ], 
+				                         "id": 10, 
+				                         "open": false, 
+				                         "parentId": 9, 
+				                         "text": "管理员管理", 
+				                         "type": "folder", 
+				                         "url": ""
+				                     }, 
+				                     {
+				                         "id": 13, 
+				                         "text": "黑名单管理"
+				                     }, 
+				                     {
+				                         "id": 14, 
+				                         "text": "日志管理"
+				                     }
+				             ], 
+				             "id": 9, 
+				             "parentId": 0, 
+				             "text": "系统管理", 
+				             "type": "folder"
+				         }
+				     ]
+		});
+		$("#tree3").tree({
+			url: "ajax/ajax_tree.jsp",
+			onClick: function(node) {
+				console.log(node);
+			}
+		});
 	});
 </script>
-<div id="tree-demo">
-
+<div id="tree-demo1" style="float: left;">
 	<div id="tree1">
 		<ul>
-			<li><a href="#">欢迎界面</a></li>
-			<li open>
-				<a href="#">系统管理</a>
+			<li><a href="#">菜单</a></li>
+			<li open><a href="#">用户管理</a>
 				<ul>
-					<li><a href="#">用户管理</a></li>
-					<li><a href="#">日志查看</a></li>
+					<li><a href="#">用户查看</a></li>
+					<li><a href="#">用户添加</a></li>
+					<li open><a href="#">权限管理</a>
+						<ul>
+							<li><a href="#">权限查看</a></li>
+							<li><a href="#">权限添加</a></li>
+							<li><a href="#">分配权限</a></li>
+						</ul>
+					</li>
 				</ul>
 			</li>
-			<li>
-				<a href="#">仓库管理</a>
+			<li><a href="#">系统管理</a>
 				<ul>
-					<li><a href="#">库存管理</a></li>
-					<li><a href="#">收货管理</a></li>
-					<li>
-						<a href="#">发货管理</a>
+					<li><a href="#">管理员管理</a>
 						<ul>
-				            <li><a href="#">用户管理</a></li>
-				            <li><a href="#">日志查看</a></li>
-				        </ul>
+							<li><a href="#">管理员查看</a></li>
+							<li><a href="#">管理员添加</a></li>
+						</ul>
 					</li>
+					<li><a href="#">黑名单管理</a></li>
+					<li><a href="#">日志管理</a></li>
 				</ul>
 			</li>
 		</ul>
 	</div>
-
+</div>
+<div id="tree-demo2" style="float: left; margin-left: 10px;">
+	<div id="tree2"></div>
+</div>
+<div id="tree-demo3" style="float: left; margin-left: 10px;">
+	<div id="tree3"></div>
 </div>
 <br />

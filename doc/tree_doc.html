@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+</head>
+<body>
+<div class="api-desc">
+	<p>
+		首先引入jquery库，然后引入tree.js、tree.css，如下：
+	</p>
+	<pre class="code">
+&lt;script type="text/javascript" src="js/jquery/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" src="js/tree.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="css/blue/tree.css"/&gt;</pre>
+
+	<p>
+		在页面加载完成后初始化tree插件
+	</p>
+	<pre class="code">
+</pre>
+
+	<p>
+		页面代码
+	</p>
+	<pre class="code">
+</pre>
+
+	<p>
+		tree插件有以下初始化选项
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>选项</th>
+				<th>类型</th>
+				<th>作用</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>data</td>
+				<td>Object</td>
+				<td>JSON格式数据，形如：<br />
+					[<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 1,<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: "",<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;open: true|false,<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: "folder",<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;children: [<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 3,<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: "",<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: ""<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: ""<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;}, <br />
+						&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: 2,<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: "",<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: ""<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+					]
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		tree插件有以下函数
+	</p>
+	<table cellpadding="0" cellspacing="0" class="list">
+		<thead>
+			<tr>
+				<th>函数名</th>
+				<th>参数</th>
+				<th>功能</th>
+				<th>返回值</th>
+				<th>示例</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>addNode</td>
+				<td></td>
+				<td>向指定节点插入子节点</td>
+				<td></td>
+				<td>
+					<pre>
+</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<br />
+</body>
+</html>
