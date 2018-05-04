@@ -55,7 +55,7 @@
 				                                 }
 				                         ], 
 				                         "id": 5, 
-				                         "open": true, 
+				                         "open": false, 
 				                         "parentId": 2, 
 				                         "text": "权限管理", 
 				                         "type": "folder", 
@@ -63,7 +63,7 @@
 				                     }
 				             ], 
 				             "id": 2, 
-				             "open": true, 
+				             "open": false, 
 				             "parentId": 0, 
 				             "text": "用户管理", 
 				             "type": "folder", 
@@ -112,6 +112,26 @@
 				alert(node.text);
 			}
 		});
+
+		// 打开、关闭按钮点击事件
+		$("#btn1").click(function() {
+			$("#tree2").tree("open", 9);
+		});
+		$("#btn2").click(function() {
+			$("#tree3").tree("open", 9);
+		});
+		$("#btn3").click(function() {
+			$("#tree2").tree("close", 9);
+		});
+		$("#btn4").click(function() {
+			$("#tree3").tree("close", 9);
+		});
+		$("#btn5").click(function() {
+			$("#tree2").tree("openAll");
+		});
+		$("#btn6").click(function() {
+			$("#tree3").tree("openAll");
+		});
 	});
 </script>
 <div id="tree-demo1" style="float: left;">
@@ -147,9 +167,15 @@
 	</div>
 </div>
 <div id="tree-demo2" style="float: left; margin-left: 10px;">
+	<button class="default-button"  id="btn1">打开系统管理</button>
+	<button class="default-button"  id="btn3">关闭系统管理</button>
 	<div id="tree2"></div>
+	<button class="default-button"  id="btn5">打开全部folder</button>
 </div>
 <div id="tree-demo3" style="float: left; margin-left: 10px;">
+	<button class="default-button"  id="btn2">打开系统管理</button>
+	<button class="default-button"  id="btn4">关闭系统管理</button>
 	<div id="tree3"></div>
+	<button class="default-button"  id="btn6">打开全部folder</button>
 </div>
 <br />

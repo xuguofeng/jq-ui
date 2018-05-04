@@ -5,8 +5,8 @@
 	 * @param {jQuery} $tree
 	 */
 	function _initTree($tree) {
-		$tree.addClass("st_tree")
-			.find("li[class!='node']").addClass("node").end()
+		$tree
+			.find("li[class!='node'][class!='folder']").addClass("node").end()
 			.find("li:has('ul')").removeClass("node").addClass("folder");
 		$tree.find("li").children("a").find("span").remove().end().prepend("<span><span>");
 		$tree.find("li.folder").children("ul").css("display", "none");
@@ -19,7 +19,7 @@
 	 * @param {Object} options
 	 */
 	function _bindEvent($tree, options) {
-		$tree.find("li.folder > a").on("click", function(e) {
+		$tree.find("li.folder > a").unbind().on("click", function(e) {
 			var f = $(this).parent();
 			if(f.hasClass("open")) {
 				f.removeClass("open").children("ul").css("display", "none");
@@ -105,6 +105,7 @@
 			dataType: "json",
 			url: options["url"] + "?id=" + id,
 			cache: false,
+			async: false,
 			success: function(data) {
 				$target.append(_createNodes($target, data, options));
 				_initTree($target);
@@ -119,7 +120,15 @@
 	 * @param {int} folderNodeId
 	 */
 	function open($tree, folderNodeId) {
-		// TODO
+		var f = $tree.find("li[node-id='tree-node-" + folderNodeId + "']");
+		if(!f[0] || !f.hasClass("folder")) {
+			return;
+		}
+		var options = $.data($tree[0], "tree");
+		if(f.children("ul").length == 0) {
+			_loadNodes(f, options);
+		}
+		f.addClass("open").children("ul").css("display", "block");
 	}
 
 	/**
@@ -128,6 +137,42 @@
 	 * @param {int} folderNodeId
 	 */
 	function close($tree, folderNodeId) {
+		var f = $tree.find("li[node-id='tree-node-" + folderNodeId + "']");
+		if(!f[0] || !f.hasClass("folder")) {
+			return;
+		}
+		f.removeClass("open").children("ul").css("display", "none");
+	}
+
+	/**
+	 * 打开全部folder节点
+	 * @param {jQuery} $tree
+	 */
+	function openAll($tree) {
+		var fs = $tree.find("li[class='folder']");
+		while(fs.length > 0) {
+			for(var i = 0; i < fs.length; i++) {
+				open($tree, fs.eq(i).attr("node-id").replace("tree-node-", ""));
+			}
+			fs = $tree.find("li[class='folder']");
+			console.log(fs);
+		}
+	}
+
+	/**
+	 * 关闭指定folder节点
+	 * @param {jQuery} $tree
+	 */
+	function closeAll($tree) {
+		// TODO
+	}
+
+	/**
+	 * 重新加载指定folder节点
+	 * @param {jQuery} $tree
+	 * @param {int} folderNodeId
+	 */
+	function reload($tree, folderNodeId) {
 		// TODO
 	}
 
@@ -136,16 +181,16 @@
 		// 函数
 		if (typeof options == 'string') {
 			switch(options){
-				case 'addNode':
-					return this.each(function() {
-						// TODO
-						// addNode($(this), param);
-					});
-				case 'removeNode':
-					return this.each(function() {
-						// TODO
-						// removeNode($(this), param);
-					});
+//				case 'addNode':
+//					return this.each(function() {
+//						// TODO
+//						// addNode($(this), param);
+//					});
+//				case 'removeNode':
+//					return this.each(function() {
+//						// TODO
+//						// removeNode($(this), param);
+//					});
 				case 'open':
 					return this.each(function() {
 						open($(this), param);
@@ -153,6 +198,18 @@
 				case 'close':
 					return this.each(function() {
 						close($(this), param);
+					});
+				case 'openAll':
+					return this.each(function() {
+						openAll($(this));
+					});
+				case 'closeAll':
+					return this.each(function() {
+						closeAll($(this));
+					});
+				case 'reload':
+					return this.each(function() {
+						reload($(this), param);
 					});
 			}
 		}
@@ -165,7 +222,7 @@
 			$.data(this, "tree", options);
 
 			// 保存对象
-			var tree = $(this);
+			var tree = $(this).addClass("st_tree");
 
 			// 从json数组创建tree节点
 			var nodes = _createNodes(tree, options["data"], options);
