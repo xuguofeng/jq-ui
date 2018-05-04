@@ -155,16 +155,21 @@
 				open($tree, fs.eq(i).attr("node-id").replace("tree-node-", ""));
 			}
 			fs = $tree.find("li[class='folder']");
-			console.log(fs);
 		}
 	}
 
 	/**
-	 * 关闭指定folder节点
+	 * 关闭全部folder节点
 	 * @param {jQuery} $tree
 	 */
 	function closeAll($tree) {
-		// TODO
+		var fs = $tree.find("li.folder.open");
+		while(fs.length > 0) {
+			for(var i = 0; i < fs.length; i++) {
+				close($tree, fs.eq(i).attr("node-id").replace("tree-node-", ""));
+			}
+			fs = $tree.find("li.folder.open");
+		}
 	}
 
 	/**
@@ -173,7 +178,35 @@
 	 * @param {int} folderNodeId
 	 */
 	function reload($tree, folderNodeId) {
-		// TODO
+		var f = $tree.find("li[node-id='tree-node-" + folderNodeId + "']");
+		if(!f[0] || !f.hasClass("folder")) { return; }
+		var options = $.data($tree[0], "tree");
+		f.children("ul").remove();
+		_loadNodes(f, options);
+		if(f.children("ul").length == 0) {
+			f.removeClass("open").removeClass("folder").addClass("node");
+			f.children("a").off().attr("href", "javascript:void(0);");
+			if(options["onClick"]) {
+				var d = {
+					id: "tree-node-" + folderNodeId, 
+					text: f.children("a").text(), 
+					children: [], 
+					open: false, 
+					type: "", 
+					url: ""
+				}
+				f.children("a").click((function(d) {
+					return function() {
+						options["onClick"](d);
+					}
+				})(d));
+			}
+		}
+		if(f.hasClass("open")) {
+			f.children("ul").css("display", "block");
+		} else {
+			f.children("ul").css("display", "none");
+		}
 	}
 
 	$.fn.tree = function(options, param) {
@@ -181,16 +214,6 @@
 		// 函数
 		if (typeof options == 'string') {
 			switch(options){
-//				case 'addNode':
-//					return this.each(function() {
-//						// TODO
-//						// addNode($(this), param);
-//					});
-//				case 'removeNode':
-//					return this.each(function() {
-//						// TODO
-//						// removeNode($(this), param);
-//					});
 				case 'open':
 					return this.each(function() {
 						open($(this), param);

@@ -273,6 +273,11 @@ $.messager.alert({
 <br />
 [panel插件手册](http://5ijy01.duapp.com/jq-ui/index.html?tab=panel_doc)
 <br />
+<br />
+[tree插件示例](http://5ijy01.duapp.com/jq-ui/index.html?tab=tree_demo)
+<br />
+[tree插件手册](http://5ijy01.duapp.com/jq-ui/index.html?tab=tree_doc)
+<br />
 
 
 

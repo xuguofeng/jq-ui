@@ -132,6 +132,15 @@
 		$("#btn6").click(function() {
 			$("#tree3").tree("openAll");
 		});
+		$("#btn7").click(function() {
+			$("#tree2").tree("closeAll");
+		});
+		$("#btn8").click(function() {
+			$("#tree3").tree("closeAll");
+		});
+		$("#btn9").click(function() {
+			$("#tree3").tree("reload", 9);
+		});
 	});
 </script>
 <div id="tree-demo1" style="float: left;">
@@ -171,11 +180,14 @@
 	<button class="default-button"  id="btn3">关闭系统管理</button>
 	<div id="tree2"></div>
 	<button class="default-button"  id="btn5">打开全部folder</button>
+	<button class="default-button"  id="btn7">关闭全部folder</button>
 </div>
 <div id="tree-demo3" style="float: left; margin-left: 10px;">
 	<button class="default-button"  id="btn2">打开系统管理</button>
 	<button class="default-button"  id="btn4">关闭系统管理</button>
 	<div id="tree3"></div>
 	<button class="default-button"  id="btn6">打开全部folder</button>
+	<button class="default-button"  id="btn8">关闭全部folder</button>
+	<button class="default-button"  id="btn9">reload系统管理</button>
 </div>
 <br />

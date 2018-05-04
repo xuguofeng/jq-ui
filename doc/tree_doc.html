@@ -15,16 +15,41 @@
 &lt;link rel="stylesheet" href="css/blue/tree.css"/&gt;</pre>
 
 	<p>
-		在页面加载完成后初始化tree插件
+		在页面加载完成后初始化tree插件，我们以ajax结合json方式实现
 	</p>
 	<pre class="code">
-</pre>
+$("#tree3").tree({
+	url: "ajax/ajax_tree.jsp",
+	onClick: function(node) {
+		console.log(node);
+		alert(node.text);
+	}
+});</pre>
+	<p>
+		远程地址需要返回json格式的树节点数据，类似：
+	</p>
+	<pre class="code">
+[
+	{
+		id: 1, 
+		text: "", 
+		open: true|false, 
+		type: "folder", 
+		children: [], 
+		url: ""
+	}, 
+	{
+		id: 2, 
+		text: "", 
+		url: ""
+	}
+]</pre>
 
 	<p>
 		页面代码
 	</p>
 	<pre class="code">
-</pre>
+&lt;div id="tree3"&gt;&lt;/div&gt;</pre>
 
 	<p>
 		tree插件有以下初始化选项
@@ -65,6 +90,16 @@
 					]
 				</td>
 			</tr>
+			<tr>
+				<td>url</td>
+				<td>string</td>
+				<td>获取节点数据的远程地址</td>
+			</tr>
+			<tr>
+				<td>onClick</td>
+				<td>function</td>
+				<td>节点点击函数，插件会把被点击的节点对象传给这个函数</td>
+			</tr>
 		</tbody>
 	</table>
 
@@ -83,13 +118,63 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>addNode</td>
-				<td></td>
-				<td>向指定节点插入子节点</td>
+				<td>open</td>
+				<td>folderNodeId</td>
+				<td>打开指定节点，前提是该节点已经存在且是一个folder</td>
 				<td></td>
 				<td>
 					<pre>
-</pre>
+$("#btn1").click(function() {
+	$("#tree3").tree("open", 9);
+});</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>close</td>
+				<td>folderNodeId</td>
+				<td>关闭指定节点，前提是该节点已经存在且是一个folder</td>
+				<td></td>
+				<td>
+					<pre>
+$("#btn3").click(function() {
+	$("#tree3").tree("close", 9);
+});</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>openAll</td>
+				<td></td>
+				<td>打开全部folder节点</td>
+				<td></td>
+				<td>
+					<pre>
+$("#btn5").click(function() {
+	$("#tree3").tree("openAll");
+});</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>closeAll</td>
+				<td></td>
+				<td>关闭全部folder节点</td>
+				<td></td>
+				<td>
+					<pre>
+$("#btn7").click(function() {
+	$("#tree3").tree("closeAll");
+});</pre>
+				</td>
+			</tr>
+			<tr>
+				<td>reload</td>
+				<td>folderNodeId</td>
+				<td>重新加载指定folder节点</td>
+				<td></td>
+				<td>
+					<pre>
+$("#btn9").click(function() {
+	$("#tree3").tree("reload", 9);
+});</pre>
 				</td>
 			</tr>
 		</tbody>
