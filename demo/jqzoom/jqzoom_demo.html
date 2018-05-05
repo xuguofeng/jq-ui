@@ -1,6 +1,9 @@
 <script>
 	$(function(){
 		$("#jqzoom1").jqueryzoom({xzoom:430,yzoom:430});
+		$("#openJqzoomDemo").click(function() {
+			window.open("demo/jqzoom/index.html");
+		});
 	});
 </script>
 <style>
@@ -14,4 +17,4 @@
 	</span>
 </div>
 <br />
-<a target="_blank" href="demo/jqzoom/index.html" style="margin: 10px 10px;">查看示例</a>
+<button class="default-button" id="openJqzoomDemo" style="margin-left: 10px;">查看示例</button>
