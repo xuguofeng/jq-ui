@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>演示jqueryzoom插件</title>
+		<link rel="icon" href="../../img/favicon.ico" type="image/x-icon" />
+		<script type="text/javascript" src="../../js/jquery/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="../../js/jqzoom/jquery.jqzoom.min.js" ></script>
+		<link rel="stylesheet" href="../../js/jqzoom/jqzoom.css" />
+		<script>
+			$(function(){
+				$("#jqzoom1").jqueryzoom({xzoom:430,yzoom:430});
+				$("#jqzoom2").jqueryzoom({xzoom:400,yzoom:400});
+				$("#jqzoom3").jqueryzoom({xzoom:400,yzoom:400});
+			});
+		</script>
+		<style>
+			#preview1 .jqzoom img{width:430px;height:430px;}
+			#preview1 .bigimg{width:860px;height:860px;}
+			#preview1{width:430px;height:430px;border:1px solid #DFDFDF;}
+
+			#preview2 .jqzoom img{width:400px;height:250px;}
+			#preview2 .bigimg{width:1920px;height:1200px;}
+			#preview2{width:400px;height:250px;border:1px solid #DFDFDF;}
+
+			#preview3 .jqzoom img{width:450px;height:450px;}
+			#preview3 .bigimg{width:800px;height:800px;}
+			#preview3{width:450px;height:450px;border:1px solid #DFDFDF;}
+		</style>
+	</head>
+	<body>
+		<div id="preview1" style="margin: 20px auto;">
+			<span class="jqzoom" id="jqzoom1">
+				<img jqimg="../../img/jqzoom/150077795850755.jpg" src="../../img/jqzoom/150077795850755.jpg"/>
+			</span>
+		</div>
+		<div id="preview2" style="margin: 20px auto;">
+			<span class="jqzoom" id="jqzoom2">
+				<img jqimg="../../img/jqzoom/big.jpg" src="../../img/jqzoom/small.jpg"/>
+			</span>
+		</div>
+		<div id="preview3" style="margin: 20px auto;">
+			<span class="jqzoom" id="jqzoom3">
+				<img jqimg="../../img/jqzoom/huawei2.jpg" src="../../img/jqzoom/huawei.jpg"/>
+			</span>
+		</div>
+	</body>
+</html>

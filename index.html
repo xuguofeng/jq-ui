@@ -34,6 +34,10 @@
 		<script type="text/javascript" src="js/slider/jquery.slider.js" ></script>
 		<link rel="stylesheet" href="js/slider/slider.css" />
 
+		<!-- jqzoom库和样式 -->
+		<script type="text/javascript" src="js/jqzoom/jquery.jqzoom.min.js" ></script>
+		<link rel="stylesheet" href="js/jqzoom/jqzoom.css" />
+
 		<!-- demo页面样式 -->
 		<link rel="stylesheet" href="demo/css/blue/demo.css" />
 		<link rel="stylesheet" href="demo/css/pagination_demo.css" />
@@ -42,6 +46,14 @@
 
 		<script>
 			$(function() {
+				var url = location.href.replace("http://", "");
+				var index1 = url.indexOf("127.0.0.1");
+				var index2 = url.indexOf("localhost");
+				if(!index1 == 0 && !index2 == 0) {
+					$("li[accordion-id='menu4']").next().remove();
+					$("li[accordion-id='menu4']").remove();
+				}
+				
 				// 初始化主操作面板宽度和高度
 				$("#main").css("width", document.body.clientWidth + "px");
 				$("#main").css("height", $(document).height() + "px");
@@ -126,27 +138,21 @@
 							<li><a tab-id="ajax_upload_doc" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': 'AjaxUpload插件', 'id': 'ajax_upload_doc', 'url': 'doc/ajax_upload_doc.html'});">AjaxUpload插件</a></li>
 						</ul>
 					</li>
-					<li accordion-id="menu3">管理员管理</li>
+					<li accordion-id="menu4">其他插件</li>
+					<li>
+						<ul>
+							<li><a tab-id="" href="javascript:;">zTree示例</a></li>
+							<li><a tab-id="jqzoom_demo" href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': 'jqzoom示例', 'id': 'jqzoom_demo', 'url': 'demo/jqzoom/jqzoom_demo.html'});">jqzoom示例</a></li>
+							<li><a tab-id="" href="javascript:;">imgAreaSelect示例</a></li>
+							<li><a tab-id="" href="javascript:;">My97DatePicker示例</a></li>
+						</ul>
+					</li>
+					<li accordion-id="menu3">管理员</li>
 					<li>
 						<ul>
 							<li><a href="javascript:;" onclick="$('#tab1').tab('addRemoteTab', {'title': '管理员查看', 'id': 'tab3', 'url': 'ajax/admin_list.html'});">管理员查看</a></li>
 							<li><a href="javascript:;" onclick="$('#tab1').tab('addTab', {'title': '管理员添加', 'id': 'tab4', 'content': '<p>管理员添加Content</p>'});">管理员添加</a></li>
 							<li><a href="javascript:;" onclick="$('#tab1').tab('addTab', {'title': '管理员修改', 'id': 'tab5', 'content': '<p>管理员修改Content</p>'});">管理员修改</a></li>
-						</ul>
-					</li>
-					<li accordion-id="menu4">用户管理</li>
-					<li>
-						<ul>
-							<li><a href="javascript:;">用户查看</a></li>
-							<li><a href="javascript:;">用户添加</a></li>
-							<li><a href="javascript:;">用户修改</a></li>
-						</ul>
-					</li>
-					<li accordion-id="menu5">系统管理</li>
-					<li>
-						<ul>
-							<li><a href="javascript:;">黑名单</a></li>
-							<li><a href="javascript:;">角色管理</a></li>
 						</ul>
 					</li>
 				</ul>
