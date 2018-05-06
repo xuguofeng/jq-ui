@@ -1,21 +1,21 @@
 .message-info-icon {
-	background: url(../../img/icon/messager_icons.png) no-repeat 0px 0px;
+	background: url(../icon/messager_icons.png) no-repeat 0px 0px;
 }
 
 .message-question-icon {
-	background: url(../../img/icon/messager_icons.png) no-repeat -32px 0px;
+	background: url(../icon/messager_icons.png) no-repeat -32px 0px;
 }
 
 .message-warning-icon {
-	background: url(../../img/icon/messager_icons.png) no-repeat -96px 0px;
+	background: url(../icon/messager_icons.png) no-repeat -96px 0px;
 }
 
 .message-error-icon {
-	background: url(../../img/icon/messager_icons.png) no-repeat -64px 0px;
+	background: url(../icon/messager_icons.png) no-repeat -64px 0px;
 }
 
 .message-success-icon {
-	background: url(../../img/icon/success_icon.png) no-repeat 0px 0px;
+	background: url(../icon/success_icon.png) no-repeat 0px 0px;
 }
 
 .message-icon {

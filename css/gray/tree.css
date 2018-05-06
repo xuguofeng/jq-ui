@@ -24,12 +24,12 @@
 }
 /* 子菜单的父节点 */
 .st_tree .folder {
-	list-style-image: url(../../img/icon/st_icon.png);
+	list-style-image: url(../icon/st_icon.png);
 	padding: 0 0 0 0;
 }
 /* 展开的父节点 */
 .st_tree .open{
-	list-style-image: url(../../img/icon/st_icon_open.png);
+	list-style-image: url(../icon/st_icon_open.png);
 	padding: 0 0 0 0;
 }
 
@@ -41,11 +41,11 @@
 	height: 16px;
 }
 .st_tree .node > a span {
-	background-image: url('../../img/icon/st_node.gif');
+	background-image: url('../icon/st_node.gif');
 }
 .st_tree .folder > a span {
-	background-image: url('../../img/icon/st_folder.gif');
+	background-image: url('../icon/st_folder.gif');
 }
 .st_tree .open > a span {
-	background-image: url('../../img/icon/st_folder_open.gif');
+	background-image: url('../icon/st_folder_open.gif');
 }

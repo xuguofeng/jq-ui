@@ -38,10 +38,10 @@
 	opacity: 1;
 }
 .tab .tab-header-select-down {
-	background: url(../../img/accordion_arrows.png) no-repeat -17px center;
+	background: url(../icon/accordion_arrows.png) no-repeat -17px center;
 }
 .tab .tab-header-select-up {
-	background: url(../../img/accordion_arrows.png) no-repeat 0px center;
+	background: url(../icon/accordion_arrows.png) no-repeat 0px center;
 }
 .tab-header-select:hover {
 	opacity: 1;
@@ -63,7 +63,7 @@
 	right: 0;
 	width: 16px;
 	height: 16px;
-	background: url(../../img/tabs_icons.png) no-repeat -34px center;
+	background: url(../icon/tabs_icons.png) no-repeat -34px center;
 	opacity: 0.5;
 }
 .tab .tab-header-item .close:hover {
