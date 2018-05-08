@@ -3,18 +3,18 @@
 		// 初始化面板
 		$("#tree-demo1").panel({
 			title: "DOM树插件",
-			width: "400",
-			height: "95%"
+			width: "600",
+			height: "45%"
 		});
 		$("#tree-demo2").panel({
 			title: "JSON树插件",
-			width: "400",
-			height: "95%"
+			width: "600",
+			height: "45%"
 		});
 		$("#tree-demo3").panel({
 			title: "AJAX_JSON树插件",
-			width: "400",
-			height: "95%"
+			width: "600",
+			height: "45%"
 		});
 
 		// 初始化树插件
@@ -143,7 +143,7 @@
 		});
 	});
 </script>
-<div id="tree-demo1" style="float: left;">
+<div id="tree-demo1" style="margin-bottom: 10px;">
 	<div id="tree1">
 		<ul>
 			<li><a href="#">菜单</a></li>
@@ -175,14 +175,14 @@
 		</ul>
 	</div>
 </div>
-<div id="tree-demo2" style="float: left; margin-left: 10px;">
+<div id="tree-demo2" style="margin-bottom: 10px;">
 	<button class="default-button"  id="btn1">打开系统管理</button>
 	<button class="default-button"  id="btn3">关闭系统管理</button>
 	<div id="tree2"></div>
 	<button class="default-button"  id="btn5">打开全部folder</button>
 	<button class="default-button"  id="btn7">关闭全部folder</button>
 </div>
-<div id="tree-demo3" style="float: left; margin-left: 10px;">
+<div id="tree-demo3"><!-- float: left; margin-left: 10px; -->
 	<button class="default-button"  id="btn2">打开系统管理</button>
 	<button class="default-button"  id="btn4">关闭系统管理</button>
 	<div id="tree3"></div>
