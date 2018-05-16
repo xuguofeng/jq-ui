@@ -12,7 +12,7 @@
 		// 选择列
 		if(options["showCheckbox"])
 			tr.append("<th style='text-align:center'>选择</th>");
-		
+
 		// 遍历columns参数
 		// 使用columnName填充td
 		// 把td追加到表头行
@@ -35,7 +35,7 @@
 		// 再wrap包裹table
 		$datatable.append("<tbody></tbody>").wrap(wrap);
 	}
-	
+
 	/**
 	 * 加载初始数据，初始化分页组件
 	 * @param {Object} $datatable
@@ -53,23 +53,29 @@
 			data: { "pageNum": options["pageNum"], "pageSize": options["pageSize"] },
 			success: function(data) {
 				// 缓存数据
-				$.data($datatable[0], "data", data["users"]);
+				$.data($datatable[0], "data", data["rows"]);
 				// 首先清空tbody
 				var tbody = $datatable.find("tbody").empty();
 				// 遍历数据集合
-				for(var i = 0; i < data["users"].length; i++) {
-					var user = data["users"][i];
+				for(var i = 0; i < data["rows"].length; i++) {
+					var user = data["rows"][i];
 					// 定义一个tr
 					var tr = $("<tr></tr>");
 					// 添加复选框
-					if(options["showCheckbox"])
+					if(options["showCheckbox"]){
 						tr.append("<td style='text-align:center'><input type='checkbox' row-id='" + i + "' /></td>");
-					
+					}
+
 					// 遍历columns
 					// 获取每一个字段的值填充td
 					// 再把td追加到tr
 					for(var j = 0; j < options["columns"].length; j++) {
-						var td = $("<td>" + user[ options["columns"][j]["field"] ] + "</td>");
+						var v = user[ options["columns"][j]["field"] ];
+						var format = options["columns"][j]["format"];
+						if(format) {
+							v = format(v);
+						}
+						var td = $("<td>" + v + "</td>");
 						if(options["columns"][j]["css"])
 							td.css(options["columns"][j]["css"]);
 						tr.append(td);
@@ -101,7 +107,7 @@
 			}
 		});
 	}
-	
+
 	/**
 	 * 获取选择的行记录的数组
 	 * @param {Object} $datatable
@@ -144,7 +150,7 @@
 					return getSelectRows($(this));
 			}
 		}
-		
+
 		// 默认参数配置
 		var defaults = {
 			width: "100%",		// 表格默认的宽，默认100%
@@ -156,7 +162,7 @@
 			pagination: true,	// 是否启用分页组件，默认启用
 			showCheckbox: false	// 行首是否显示复选框，默认不显示
 		};
-		
+
 		// 合并自定义参数
 		var options = $.extend(defaults, options);
 

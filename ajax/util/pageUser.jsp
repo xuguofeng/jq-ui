@@ -6,11 +6,11 @@
 public class PageUser {
 
 	private Integer totalPage;
-	private List<User> users;
+	private List<User> rows;
 
-	public PageUser(Integer totalPage, List<User> users) {
+	public PageUser(Integer totalPage, List<User> rows) {
 		this.totalPage = totalPage;
-		this.users = users;
+		this.rows = rows;
 	}
 	
 	public void setTotalPage(Integer totalPage) {
@@ -19,11 +19,11 @@ public class PageUser {
 	public Integer getTotalPage() {
 		return this.totalPage;
 	}
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setRows(List<User> rows) {
+		this.rows = rows;
 	}
-	public List<User> getUsers() {
-		return this.users;
+	public List<User> getRows() {
+		return this.rows;
 	}
 }
 %>

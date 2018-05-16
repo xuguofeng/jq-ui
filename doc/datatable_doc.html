@@ -30,7 +30,7 @@
 			{ field: "email", columnName: "邮箱" },
 			{ field: "description", columnName: "自我介绍" }
 		],
-		url: "/jq-ui/ajax/admin_json.jsp",
+		url: "/jq-ui/ajax/admin_json.jsp", // 获取数据的远程地址，返回数据格式如：{ totalPage: 1, rows: [] }
 		pageNum: 1,			// 显示第几页数据，默认1
 		pageSize: 15,		// 每页数据数量，默认10
 		pagination: true,	// 是否启用分页组件，默认启用
@@ -72,12 +72,12 @@
 			<tr>
 				<td>columns</td>
 				<td>Array</td>
-				<td>字段信息，默认是[]。如：[ { field: "", columnName: "", css: { "text-align": "center" } }, { field: "", columnName: "", css: { "text-align": "center" } }, ... ]</td>
+				<td>字段信息，默认是[]。如：[ { field: "", columnName: "", css: { "text-align": "center" }, format: function(v) {return v;} }, { field: "", columnName: "", css: { "text-align": "center" } }, ... ]</td>
 			</tr>
 			<tr>
 				<td>url</td>
 				<td>string</td>
-				<td>获取数据的远程地址</td>
+				<td>获取数据的远程地址，返回数据格式如：{ totalPage: 1, rows: [] }</td>
 			</tr>
 			<tr>
 				<td>pageNum</td>
