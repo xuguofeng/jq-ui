@@ -32,7 +32,7 @@
 
 	$.messager = {
 
-		__top: 8,
+		__top: 3,
 
 		alert: function(options) {
 			// 默认配置
