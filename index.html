@@ -46,14 +46,18 @@
 
 		<script>
 			$(function() {
+				// 获取请求参数
+				var p = getParameters();
+				// 获取是否本地访问
 				var url = location.href.replace("http://", "");
 				var index1 = url.indexOf("127.0.0.1");
 				var index2 = url.indexOf("localhost");
-				if(!index1 == 0 && !index2 == 0) {
+				// 获取user请求参数
+				var user = p["user"];
+				if(!index1 == 0 && !index2 == 0 && user != "admin") {
 					$("li[accordion-id='menu4']").next().remove();
 					$("li[accordion-id='menu4']").remove();
 				}
-				
 				// 初始化主操作面板宽度和高度
 				$("#main").css("width", document.body.clientWidth + "px");
 				$("#main").css("height", $(document).height() + "px");
@@ -72,8 +76,7 @@
 				$("#tab1").tab();
 
 				// 根据参数打开指定的tab
-				var theRequest = getParameters();
-				var tab = theRequest["tab"];
+				var tab = p["tab"];
 				if(tab && $("a[tab-id='" + tab + "']")[0]) {
 					var $a = $("a[tab-id='" + tab + "']");
 					$a.trigger("click");
