@@ -76,7 +76,7 @@
 			
 			// 创建左右导航
 			if (this.settings.directionNav) {
-				this.ele.append("<div class='directionNav'><span class='prevBtn'>&lt;</span><span class='nextBtn'>&gt;</span></div>");
+				this.ele.append("<div class='directionNav'><span class='prevBtn'>&lsaquo;</span><span class='nextBtn'>&rsaquo;</span></div>");
 			}
 			
 			var firstimg = this.img.find('li').first().clone(); // 复制第一张图片
