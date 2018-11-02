@@ -151,8 +151,12 @@
 	/**
 	 * 创建body遮罩层
 	 */
-	function createMask() {
-		return $("<div class='dialog-mask'></div>").css("z-index", ++window[ 'zIndex' ]).appendTo($("body"));
+	function createMask(dialogId) {
+		var mask = $("<div class='dialog-mask'></div>").css("z-index", ++window[ 'zIndex' ]);
+		if(dialogId) {
+			mask.attr("id", dialogId + "_mask");
+		}
+		return mask.appendTo($("body"));
 	}
 
 	// 对话框显示和隐藏的动画效果
@@ -239,8 +243,9 @@
 			load(dialog, options);
 
 			// 如果是模态窗口，需要创建遮挡层
-			if (options[ 'modal' ])
-				createMask();
+			if (options[ 'modal' ]) {
+				createMask(dialogId);
+			}
 
 			// 缓存
 			$.data(dialog[0], "dialog", options);
@@ -264,8 +269,10 @@
 				}
 
 				// 如果是模态窗口，还需要把mask层关掉
-				if ($(".dialog-mask")[0])
-					$(".dialog-mask").remove();
+				var mask = $("#" + id + "_mask");
+				if (mask[0]) {
+					mask.remove();
+				}
 			}
 		},
 		// 根据id刷新指定dialog

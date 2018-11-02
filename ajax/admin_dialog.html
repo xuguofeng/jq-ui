@@ -37,7 +37,16 @@ function refresh() {
 }
 // 关闭对话框
 function closeDialog() {
-	$.dialog.close("dialog1");
+	$.messager.confirm({
+		title: '信息',
+		content: '您确定关闭窗口吗？',
+		btn: [ 
+		   { text: '确定', callback: function() { 
+			   $.dialog.close("dialog1");
+		   } }, 
+		   { text: '取消', callback: function() {} }
+		]
+	});
 }
 </script>
 <span id="timestamp"></span><br />
